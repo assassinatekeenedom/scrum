@@ -1,0 +1,6 @@
+target
+bin/MySQL
+bin/MySQL/data
+bin/mysql
+bin/fitnesse
+/golden/target - Copy/

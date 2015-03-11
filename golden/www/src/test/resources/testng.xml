@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+  
+<suite name="Resource" parallel="classes" thread-count="55">
+    <test name="action" >
+        <classes>
+            <!-- class name="know.event.aspect.Writing"/ -->
+            <class name="know.event.aspect.VerifyWriting"/>
+        </classes>
+    </test>
+</suite>
