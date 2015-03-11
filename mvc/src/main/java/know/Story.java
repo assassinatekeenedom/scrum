@@ -1,6 +1,5 @@
 package know;
 
-import know.API;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import javax.ws.rs.GET;

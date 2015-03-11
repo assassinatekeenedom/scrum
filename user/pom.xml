@@ -3,17 +3,13 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>assassinate</groupId>
-        <artifactId>selenium</artifactId>
+        <groupId>assassin</groupId>
+        <artifactId>nate</artifactId>
         <version>0.0.0.0</version>
     </parent>
-    <version>0.0.0</version>
-    <artifactId>promotion</artifactId>
-    <name>Promotion</name>
+    <artifactId>user</artifactId>
+    <version>0.0.0.</version>
+    <name>User Aspect</name> 
     <dependencies>
-        <dependency>
-            <groupId>${parent.name}</groupId>
-            <artifactId>resource</artifactId>
-        </dependency>
     </dependencies>
 </project>
