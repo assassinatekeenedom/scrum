@@ -95,7 +95,7 @@ public class Save {
         properties.put("hibernate.connection.username", "root");
         properties.put("hibernate.connection.password", "");
         properties.put("hibernate.current_session_context_class", "thread");
-        properties.put("hibernate.hbm2ddl.auto", "create-drop");
+        properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.connection.url", "jdbc:mysql://localhost/selenium");
         configuration.addAnnotatedClass(Action.class);
         configuration.addAnnotatedClass(Target.class);
