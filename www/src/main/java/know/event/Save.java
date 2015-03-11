@@ -1,8 +1,15 @@
-package know;
+package know.event;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Properties;
+import know.Action;
+import know.Resource;
+import know.Event;
+import know.Goal;
+import know.Image;
+import know.Target;
+import know.Value;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,11 +25,11 @@ public class Save {
         return selenium.openSession();
     }
 
-    public static Aspect getAspect(int id) {
-        return (Aspect) selenium.openSession().get(Aspect.class, id);
+    public static Object get(Class type, int id) {
+        return selenium.openSession().get(type, id);
     }
 
-    public static Object setState(Object save) {
+    public static Object set(Object save) {
         Session local = selenium.openSession();
         Transaction tx = local.beginTransaction();
         local.saveOrUpdate(save);
@@ -49,7 +56,7 @@ public class Save {
         configuration.addAnnotatedClass(Goal.class);
         configuration.addAnnotatedClass(Image.class);
         configuration.addAnnotatedClass(Event.class);
-        configuration.addAnnotatedClass(Aspect.class);
+        configuration.addAnnotatedClass(Resource.class);
         configuration.setProperties(properties);
         selenium = configuration.buildSessionFactory(new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build());
     }

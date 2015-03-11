@@ -1,5 +1,6 @@
 package know;
 
+import know.event.Save;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class Action {
         if (cache.containsKey(action)) {
             return cache.get(action);
         }
-        cache.put(action, (Action) Save.setState(new Action(action)));
+        cache.put(action, (Action) Save.set(new Action(action)));
         return find();
     }
 

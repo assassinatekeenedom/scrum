@@ -1,15 +1,20 @@
 package know;
 
+import know.event.Save;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Aspect {
+public class Resource {
 
-    public static Aspect get(String folder, String name, String type, String content) {
-        return (Aspect) Save.setState(new Aspect(folder, name, type, content));
+    public static Resource get(int id) {
+        return (Resource) Save.get(Resource.class, id);
+    }
+
+    public static Resource get(String folder, String name, String type, String content) {
+        return (Resource) Save.set(new Resource(folder, name, type, content));
     }
 
     public String getFolder() {
@@ -57,10 +62,10 @@ public class Aspect {
         return Save.getJSON(this);
     }
 
-    public Aspect() {
+    public Resource() {
     }
 
-    public Aspect(String folder, String name, String type, String content) {
+    public Resource(String folder, String name, String type, String content) {
         this.folder = folder;
         this.name = name;
         this.type = type;

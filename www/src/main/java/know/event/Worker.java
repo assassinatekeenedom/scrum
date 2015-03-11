@@ -4,7 +4,6 @@ import com.thoughtworks.selenium.Selenium;
 import java.util.ArrayList;
 import java.util.List;
 import know.Action;
-import know.Agent;
 import know.Event;
 import know.Goal;
 import know.Image;

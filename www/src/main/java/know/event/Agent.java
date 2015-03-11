@@ -1,6 +1,7 @@
-package know;
+package know.event;
 
 import java.util.ArrayList;
+import know.Event;
 
 public class Agent extends ArrayList<Event> {
 

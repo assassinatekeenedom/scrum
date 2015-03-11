@@ -1,10 +1,10 @@
 package know.event.aspect;
 
-import know.Aspect;
+import know.Resource;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import java.net.URL;
-import know.Save;
+import know.event.Save;
 import know.event.Worker;
 import know.event.Click;
 import know.event.Close;
@@ -13,7 +13,7 @@ import know.event.Type;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class VerifyWrite extends Worker implements Runnable {
+public class VerifyAspect extends Worker implements Runnable {
 
     private String folder;
     private String name;
@@ -54,7 +54,7 @@ public class VerifyWrite extends Worker implements Runnable {
 
     @Override
     public void run() {
-        Aspect aspect = Aspect.get(folder, name, type, content);
+        Resource aspect = Resource.get(folder, name, type, content);
         try {
             URL rest = new URL("http://localhost:121/");
             RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome());
@@ -94,10 +94,10 @@ public class VerifyWrite extends Worker implements Runnable {
         }
     }
 
-    public VerifyWrite() {
+    public VerifyAspect() {
     }
 
-    public VerifyWrite(String folder, String name, String type, String content) {
+    public VerifyAspect(String folder, String name, String type, String content) {
         this.folder = folder;
         this.name = name;
         this.type = type;

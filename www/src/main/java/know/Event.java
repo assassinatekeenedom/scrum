@@ -1,5 +1,6 @@
 package know;
 
+import know.event.Save;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +11,12 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Event {
 
+    public static Event get(int id) {
+        return (Event) Save.get(Event.class, id);
+    }
+
     public static Event get(Action action, Target target, Value value, Goal goal, Image image) {
-        return (Event) Save.setState(new Event(action, target, value, goal, image));
+        return (Event) Save.set(new Event(action, target, value, goal, image));
     }
 
     public static Event get(String action, String target, String value, String goal, String image) {

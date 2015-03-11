@@ -1,5 +1,6 @@
 package know;
 
+import know.event.Save;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,10 @@ import javax.persistence.Id;
 @Entity
 public class Image {
 
+    public static Image get(int id) {
+        return (Image) Save.get(Image.class, id);
+    }
+
     private static final Map<String, Image> cache = Collections.synchronizedMap(new HashMap());
 
     public static Image get(String action) {
@@ -21,7 +26,7 @@ public class Image {
         if (cache.containsKey(image)) {
             return cache.get(image);
         }
-        cache.put(image, (Image) Save.setState(new Image(image)));
+        cache.put(image, (Image) Save.set(new Image(image)));
         return find();
     }
 

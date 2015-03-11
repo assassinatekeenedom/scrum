@@ -1,5 +1,6 @@
 package know;
 
+import know.event.Save;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,10 @@ import javax.persistence.Id;
 @Entity
 public class Goal {
 
+    public static Goal get(int id) {
+        return (Goal) Save.get(Goal.class, id);
+    }
+
     private static final Map<String, Goal> cache = Collections.synchronizedMap(new HashMap());
 
     public static Goal get(String action) {
@@ -21,7 +26,7 @@ public class Goal {
         if (cache.containsKey(goal)) {
             return cache.get(goal);
         }
-        cache.put(goal, (Goal) Save.setState(new Goal(goal)));
+        cache.put(goal, (Goal) Save.set(new Goal(goal)));
         return find();
     }
 
