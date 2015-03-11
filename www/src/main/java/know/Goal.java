@@ -1,6 +1,5 @@
 package know;
 
-import know.event.Save;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +10,11 @@ import javax.persistence.Id;
 
 @Entity
 public class Goal {
+
+    @Override
+    public String toString() {
+        return Save.getJSON(this);
+    }
 
     public static Goal get(int id) {
         return (Goal) Save.get(Goal.class, id);

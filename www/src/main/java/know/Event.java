@@ -1,6 +1,5 @@
 package know;
 
-import know.event.Save;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +9,11 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Event {
+
+    @Override
+    public String toString() {
+        return Save.getJSON(this);
+    }
 
     public static Event get(int id) {
         return (Event) Save.get(Event.class, id);

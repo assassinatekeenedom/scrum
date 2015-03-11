@@ -4,7 +4,7 @@ import know.Resource;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import java.net.URL;
-import know.event.Save;
+import know.Save;
 import know.event.Worker;
 import know.event.Click;
 import know.event.Close;

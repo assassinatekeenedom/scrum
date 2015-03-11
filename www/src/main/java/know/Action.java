@@ -1,6 +1,5 @@
 package know;
 
-import know.event.Save;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +15,11 @@ public class Action {
 
     public static Action get(String action) {
         return new Action(action).find();
+    }
+
+    @Override
+    public String toString() {
+        return Save.getJSON(this);
     }
 
     public Action find() {
