@@ -18,6 +18,10 @@ public class Save {
         return selenium.openSession();
     }
 
+    public static Aspect getAspect(int id) {
+        return (Aspect) selenium.openSession().get(Aspect.class, id);
+    }
+
     public static Object setState(Object save) {
         Session local = selenium.openSession();
         Transaction tx = local.beginTransaction();

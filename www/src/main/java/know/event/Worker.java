@@ -1,8 +1,15 @@
-package know;
+package know.event;
 
 import com.thoughtworks.selenium.Selenium;
 import java.util.ArrayList;
 import java.util.List;
+import know.Action;
+import know.Agent;
+import know.Event;
+import know.Goal;
+import know.Image;
+import know.Target;
+import know.Value;
 
 public class Worker extends ArrayList<Work> implements Work {
 

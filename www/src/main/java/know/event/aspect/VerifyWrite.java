@@ -5,7 +5,7 @@ import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import java.net.URL;
 import know.Save;
-import know.Worker;
+import know.event.Worker;
 import know.event.Click;
 import know.event.Close;
 import know.event.Open;
@@ -54,7 +54,6 @@ public class VerifyWrite extends Worker implements Runnable {
 
     @Override
     public void run() {
-
         Aspect aspect = Aspect.get(folder, name, type, content);
         try {
             URL rest = new URL("http://localhost:121/");
@@ -74,10 +73,10 @@ public class VerifyWrite extends Worker implements Runnable {
             builder.append("!path C:/bin/jackson/*.jar\n");
             builder.append("!path C:/bin/selenium/lib/*.jar\n");
             builder.append("!define TEST_SYSTEM {slim} \n|");
-            String name = Aspect.class.getCanonicalName();
+            String name = FileAspect.class.getCanonicalName();
             System.out.println(Save.getJSON(aspect));
             builder.append(name);
-            builder.append("|\n|id?|\n");
+            builder.append("|\n|id|\n");
             builder.append("|");
             builder.append(aspect.getId());
             builder.append("|\n");

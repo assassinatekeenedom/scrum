@@ -3,8 +3,8 @@
 <suite name="Resource" parallel="classes" thread-count="55">
     <test name="action" >
         <classes>
-            <!-- class name="know.event.aspect.Writing"/ -->
-            <class name="know.event.aspect.VerifyWriting"/>
+            <class name="know.event.aspect.Writing"/>
+            <!-- class name="know.event.aspect.VerifyWriting"/ -->
         </classes>
     </test>
 </suite>

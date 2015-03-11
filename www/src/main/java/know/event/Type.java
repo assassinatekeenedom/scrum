@@ -3,7 +3,6 @@ package know.event;
 import com.thoughtworks.selenium.Selenium;
 import java.util.List;
 import know.Event;
-import know.Worker;
 
 public class Type extends Worker {
 
