@@ -3,90 +3,46 @@ package know;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Properties;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.concurrent.Callable;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-@Entity
-public class Save {
-
-    @Id
-    @GeneratedValue
-    @Column(unique = true)
-    private int id;
-    @Column(length = Integer.MAX_VALUE)
-    private String how;
-    @Column(length = Integer.MAX_VALUE)
-    private String json;
+public class Save implements Callable<Object> {
 
     @Override
-    public String toString() {
-        return Save.getJSON(this);
-    }
-
-    public Save() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getHow() {
-        return how;
-    }
-
-    public void setHow(String how) {
-        this.how = how;
-    }
-
-    public String getJson() {
-        return json;
-    }
-
-    public void setJson(String json) {
-        this.json = json;
-    }
-
-    public static Session getSession() {
-        return selenium.openSession();
-    }
-
-    public static Object get(Class type, int id) {
-        Object any = selenium.openSession().get(type, id);
-        Save saved = new Save();
-        saved.setJson(any.toString());
-        saved.setHow("get");
-        set(saved);
-        return any;
-    }
-
-    public static Object set(Object save) {
-        if (!save.getClass().equals(Save.class)) {
-            Save saved = new Save();
-            saved.setJson(save.toString());
-            saved.setHow("set");
-            set(saved);
-        }
-        Session local = selenium.openSession();
-        Transaction tx = local.beginTransaction();
-        local.saveOrUpdate(save);
+    public Object call() {
+        Transaction tx = session.beginTransaction();
+        session.save(save);
+        session.flush();
+        session.clear();
         tx.commit();
-        local.flush();
-        local.close();
+        session.close();
         return save;
     }
 
-    private static final SessionFactory selenium;
+    public static Object set(Object save) {
+        return new Save(selenium.openSession(), save).call();
+    }
+
+    public static Object get(Class type, int id) {
+        return selenium.openSession().get(type, id);
+    }
+
+    public static String getJSON(Object any) {
+        try {
+            return new ObjectMapper().writeValueAsString(any);
+        } catch (JsonProcessingException ex) {
+            return any.getClass().getCanonicalName();
+        }
+    }
+
+    public Save(Session session, Object save) {
+        this.session = session;
+        this.save = save;
+    }
 
     static {
         Properties properties = new Properties();
@@ -94,7 +50,7 @@ public class Save {
         properties.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
         properties.put("hibernate.connection.username", "root");
         properties.put("hibernate.connection.password", "");
-        properties.put("hibernate.current_session_context_class", "thread");
+//        properties.put("hibernate.current_session_context_class", "thread");
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.connection.url", "jdbc:mysql://localhost/selenium");
         configuration.addAnnotatedClass(Action.class);
@@ -108,13 +64,8 @@ public class Save {
         configuration.setProperties(properties);
         selenium = configuration.buildSessionFactory(new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build());
     }
-
-    public static String getJSON(Object any) {
-        try {
-            return new ObjectMapper().writeValueAsString(any);
-        } catch (JsonProcessingException ex) {
-            return any.getClass().getCanonicalName();
-        }
-    }
+    private static final SessionFactory selenium;
+    private final Session session;
+    private final Object save;
 
 }
