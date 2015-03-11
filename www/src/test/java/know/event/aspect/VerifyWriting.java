@@ -15,7 +15,7 @@ public class VerifyWriting {
 
     @Test(dataProvider = "files")
     public void handle(Virtual node) {
-        new VerifyAspect(node.getFolder(), node.getName(), node.getType(), node.getContent()).run();
+        new VerifyResource(node.getFolder(), node.getName(), node.getType(), node.getContent()).run();
     }
 
     public VerifyWriting() {

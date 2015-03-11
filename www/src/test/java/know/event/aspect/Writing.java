@@ -23,7 +23,7 @@ public class Writing {
         aspect.setType(node.getType());
         aspect.setContent(node.getContent());
         Save.set(aspect);
-        FileAspect file = new FileAspect();
+        FileResource file = new FileResource();
         file.setId(aspect.getId());
     }
 

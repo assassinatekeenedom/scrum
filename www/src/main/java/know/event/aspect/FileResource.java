@@ -13,10 +13,11 @@ import know.event.Type;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class FileAspect extends Worker {
+public class FileResource extends Worker {
 
     public int setId(int id) {
         Resource aspect = Resource.get(id);
+        System.out.println(aspect.toString());
         try {
             URL rest = new URL("http://localhost/");
             RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome());
@@ -38,7 +39,7 @@ public class FileAspect extends Worker {
         return id;
     }
 
-    public FileAspect() {
+    public FileResource() {
     }
 
 }

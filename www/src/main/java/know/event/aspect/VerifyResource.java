@@ -13,7 +13,7 @@ import know.event.Type;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class VerifyAspect extends Worker implements Runnable {
+public class VerifyResource extends Worker implements Runnable {
 
     private String folder;
     private String name;
@@ -73,7 +73,7 @@ public class VerifyAspect extends Worker implements Runnable {
             builder.append("!path C:/bin/jackson/*.jar\n");
             builder.append("!path C:/bin/selenium/lib/*.jar\n");
             builder.append("!define TEST_SYSTEM {slim} \n|");
-            String name = FileAspect.class.getCanonicalName();
+            String name = FileResource.class.getCanonicalName();
             System.out.println(Save.getJSON(aspect));
             builder.append(name);
             builder.append("|\n|id|\n");
@@ -94,10 +94,10 @@ public class VerifyAspect extends Worker implements Runnable {
         }
     }
 
-    public VerifyAspect() {
+    public VerifyResource() {
     }
 
-    public VerifyAspect(String folder, String name, String type, String content) {
+    public VerifyResource(String folder, String name, String type, String content) {
         this.folder = folder;
         this.name = name;
         this.type = type;
