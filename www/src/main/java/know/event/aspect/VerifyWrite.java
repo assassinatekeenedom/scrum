@@ -69,10 +69,10 @@ public class VerifyWrite extends Worker implements Runnable {
             builder.append("!path C:/selenium/golden/gold/target/*.jar\n");
             builder.append("!path C:/selenium/golden/user/target/*.jar\n");
             builder.append("!path C:/selenium/golden/www/target/*.jar\n");
-            builder.append("!path C:/selenium/bin/hibernate/*.jar\n");
-            builder.append("!path C:/selenium/bin/log4j/*.jar\n");
-            builder.append("!path C:/selenium/bin/jackson/*.jar\n");
-            builder.append("!path C:/selenium/bin/selenium/lib/*.jar\n");
+            builder.append("!path C:/bin/hibernate/*.jar\n");
+            builder.append("!path C:/bin/log4j/*.jar\n");
+            builder.append("!path C:/bin/jackson/*.jar\n");
+            builder.append("!path C:/bin/selenium/lib/*.jar\n");
             builder.append("!define TEST_SYSTEM {slim} \n|");
             String name = Aspect.class.getCanonicalName();
             System.out.println(Save.getJSON(aspect));

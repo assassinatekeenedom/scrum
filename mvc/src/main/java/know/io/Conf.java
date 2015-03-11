@@ -6,7 +6,7 @@ import know.Virtual;
 
 public enum Conf implements Virtual {
 
-    APACHE(new IO("C:/selenium/bin/apache/conf", "apache", "conf",
+    APACHE(new IO("C:/bin/apache/conf", "apache", "conf",
             "Listen 80\n"
             + "NameVirtualHost *:80\n"
             + "<VirtualHost *:80>\n"
