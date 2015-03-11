@@ -21,13 +21,13 @@ public enum Bat implements Virtual {
     GIT_COMMIT(new IO("C:/selenium/golden/target/bin", "commit", "bat", "@echo off\ncd ..\\..\\..\\\ncall git status\ncall git add -A\ncall git commit -m %1%\ncd C:\\selenium\\golden\\target\\bin\nstart .spush.bat")),
     GIT_ROLLBACK(new IO("C:/selenium/golden/target/bin", "rollback", "bat", "@ECHO OFF\ngit checkout -f")),
     MVN_BUILD(new IO("C:/selenium/golden/target/bin", "build", "bat", "@echo off\n"
-            + "cd C:\\selenium\\golden\\mvc\n"
+            + "cd C:\\selenium\\mvc\n"
             + "call mvn clean install\n"
-            + "cd C:\\selenium\\golden\\gold\n"
+            + "cd C:\\selenium\\gold\n"
             + "call mvn clean install\n"
-            + "cd C:\\selenium\\golden\\user\n"
+            + "cd C:\\selenium\\user\n"
             + "call mvn clean install\n"
-            + "cd C:\\selenium\\golden\\www\n"
+            + "cd C:\\selenium\\www\n"
             + "call mvn clean install\n"
             + "cd C:\\selenium\\golden\\target\\bin")),
     SELENIUM_ALL(new IO("C:/selenium/golden/target/bin", "selenium", "bat", "@echo off\nstart C:\\selenium\\golden\\target\\bin\\chromeA.bat\nstart C:\\selenium\\golden\\target\\bin\\chromeB.bat\nstart C:\\selenium\\golden\\target\\bin\\fitnesse.bat\nexit")),

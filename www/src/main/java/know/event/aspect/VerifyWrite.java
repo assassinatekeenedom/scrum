@@ -65,10 +65,10 @@ public class VerifyWrite extends Worker implements Runnable {
             setUser(user);
             StringBuilder builder = new StringBuilder();
             builder.append("!contents -R2 -g -p -f -h\n");
-            builder.append("!path C:/selenium/golden/mvc/target/*.jar\n");
-            builder.append("!path C:/selenium/golden/gold/target/*.jar\n");
-            builder.append("!path C:/selenium/golden/user/target/*.jar\n");
-            builder.append("!path C:/selenium/golden/www/target/*.jar\n");
+            builder.append("!path C:/selenium/mvc/target/*.jar\n");
+            builder.append("!path C:/selenium/gold/target/*.jar\n");
+            builder.append("!path C:/selenium/user/target/*.jar\n");
+            builder.append("!path C:/selenium/www/target/*.jar\n");
             builder.append("!path C:/bin/hibernate/*.jar\n");
             builder.append("!path C:/bin/log4j/*.jar\n");
             builder.append("!path C:/bin/jackson/*.jar\n");
