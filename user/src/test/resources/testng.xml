@@ -1,9 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
   
-<suite name="Resource" parallel="classes" thread-count="100">
-    <test name="future">
+<suite name="Resource" parallel="classes" thread-count="55">
+    <test name="action" >
         <classes>
-            <!--class name="know.AcceptStory"/-->
+            <class name="know.event.WriteStory"/>
+            <class name="know.event.VerifyWriting"/>
         </classes>
     </test>
 </suite>

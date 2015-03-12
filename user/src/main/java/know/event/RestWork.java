@@ -1,23 +1,21 @@
-package know.event.aspect;
+package know.event;
 
-import know.Resource;
+import know.Aspect;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import java.net.URL;
-import know.event.Worker;
-import know.event.Click;
-import know.event.Close;
-import know.event.Open;
-import know.event.Select;
-import know.event.Type;
+import know.Worker;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class FileResource extends Worker {
+public class RestWork extends Worker {
 
-    public int setId(int id) {
-        Resource aspect = Resource.get(id);
-        System.out.println(aspect.toString());
+    public RestWork() {
+    }
+
+    @Override
+    public Aspect call() throws Exception {
+        Aspect aspect = super.call();
         try {
             URL rest = new URL("http://localhost/");
             RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome());
@@ -36,10 +34,7 @@ public class FileResource extends Worker {
         } catch (Exception ex) {
             System.out.println(ex.getCause() + " ..write.. " + ex.getMessage());
         }
-        return id;
-    }
-
-    public FileResource() {
+        return aspect;
     }
 
 }

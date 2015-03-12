@@ -6,14 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Resource {
+public class Aspect {
 
-    public static Resource get(int id) {
-        return (Resource) Save.get(Resource.class, id);
+    public static Aspect get(int id) {
+        return (Aspect) Save.get(Aspect.class, id);
     }
 
-    public static Resource get(String folder, String name, String type, String content) {
-        return (Resource) Save.set(new Resource(folder, name, type, content));
+    public static Aspect get(String folder, String name, String type, String content) {
+        return (Aspect) Save.set(new Aspect(folder, name, type, content));
     }
 
     public String getFolder() {
@@ -61,10 +61,10 @@ public class Resource {
         return Save.getJSON(this);
     }
 
-    public Resource() {
+    public Aspect() {
     }
 
-    public Resource(String folder, String name, String type, String content) {
+    public Aspect(String folder, String name, String type, String content) {
         this.folder = folder;
         this.name = name;
         this.type = type;

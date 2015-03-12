@@ -1,23 +1,32 @@
-package know.event;
+package know;
 
 import com.thoughtworks.selenium.Selenium;
 import java.util.ArrayList;
 import java.util.List;
-import know.Action;
-import know.Event;
-import know.Goal;
-import know.Image;
-import know.Target;
-import know.Value;
+import java.util.concurrent.Callable;
 
-public class Worker extends ArrayList<Work> implements Work {
+public class Worker extends ArrayList<Known> implements Runnable, Callable<Aspect>, Known {
+
+    @Override
+    public Aspect call() throws Exception {
+        if (id > -1) {
+            aspect = Aspect.get(id);
+            new Thread(this).start();
+        }
+        return aspect;
+    }
+
+    @Override
+    public void run() {
+        id = aspect != null ? aspect.getId() : id;
+    }
 
     @Override
     public List<Event> action(Selenium browser) {
         Event local = Event.get(Action.get(getClass().getCanonicalName()), Target.get(target), Value.get(value), Goal.get(user), Image.get(browser.captureScreenshotToString()));
         List<Event> all = new Agent("jsonp");
         all.add(local);
-        for (Work command : this) {
+        for (Known command : this) {
             command.setUser(user);
             try {
                 all.addAll(command.action(browser));
@@ -25,6 +34,16 @@ public class Worker extends ArrayList<Work> implements Work {
             }
         }
         return all;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -70,8 +89,10 @@ public class Worker extends ArrayList<Work> implements Work {
         this.value = value;
     }
 
+    private Aspect aspect;
     private String user;
     private String target;
     private String value;
+    private int id;
 
 }

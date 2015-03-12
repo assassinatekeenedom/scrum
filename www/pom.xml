@@ -9,7 +9,7 @@
     </parent>
     <artifactId>graph</artifactId>
     <version>0.0.0.2</version>
-    <name>Role Story</name>
+    <name>Story</name>
     <dependencies>
         <dependency>
             <groupId>assassin</groupId>

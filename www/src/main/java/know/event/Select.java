@@ -1,5 +1,6 @@
 package know.event;
 
+import know.Worker;
 import com.thoughtworks.selenium.Selenium;
 import java.util.List;
 import know.Event;

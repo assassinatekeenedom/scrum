@@ -1,14 +1,14 @@
-package know.event.aspect;
+package know.event;
 
 import know.NIO;
 import know.Virtual;
 import java.util.Iterator;
-import know.Resource;
+import know.Aspect;
 import know.Save;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class Writing {
+public class WriteStory {
 
     @DataProvider(name = "files", parallel = true)
     public static Iterator<Object[]> files() {
@@ -16,18 +16,19 @@ public class Writing {
     }
 
     @Test(dataProvider = "files")
-    public void handle(Virtual node) {
-        Resource aspect = new Resource();
+    public void handle(Virtual node) throws Exception {
+        Aspect aspect = new Aspect();
         aspect.setFolder(node.getFolder());
         aspect.setName(node.getName());
         aspect.setType(node.getType());
         aspect.setContent(node.getContent());
         Save.set(aspect);
-        FileResource file = new FileResource();
-        file.setId(aspect.getId());
+        RestWork rest = new RestWork();
+        rest.setId(aspect.getId());
+        System.out.println(rest.call());
     }
 
-    public Writing() {
+    public WriteStory() {
     }
 
 }

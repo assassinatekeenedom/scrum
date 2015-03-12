@@ -1,10 +1,14 @@
-package know.event;
+package know;
 
 import com.thoughtworks.selenium.Selenium;
 import java.util.List;
-import know.Event;
+import java.util.concurrent.Callable;
 
-public interface Work {
+public interface Known extends Runnable, Callable<Aspect> {
+
+    public int getId();
+
+    public void setId(int id);
 
     public List<Event> action(Selenium action);
 

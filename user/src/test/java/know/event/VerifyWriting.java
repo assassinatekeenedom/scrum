@@ -1,4 +1,4 @@
-package know.event.aspect;
+package know.event;
 
 import know.NIO;
 import know.Virtual;
@@ -15,7 +15,7 @@ public class VerifyWriting {
 
     @Test(dataProvider = "files")
     public void handle(Virtual node) {
-        new VerifyResource(node.getFolder(), node.getName(), node.getType(), node.getContent()).run();
+        new ValidWork(node.getFolder(), node.getName(), node.getType(), node.getContent()).run();
     }
 
     public VerifyWriting() {
