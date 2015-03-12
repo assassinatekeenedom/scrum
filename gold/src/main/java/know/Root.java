@@ -20,16 +20,6 @@ public class Root extends API {
 
     private static final Map<String, StringBuilder> buffer = Collections.synchronizedMap(new HashMap());
 
-    public static File write(String folder, String name, String type, String content) {
-        try {
-            IO future = new IO(folder, name, type, content);
-            return future.call();
-        } catch (Exception ex) {
-            System.out.println("EXCEPTION writing to file!");
-            return null;
-        }
-    }
-
     @GET
     @Path("/{callback}/{name}.{type}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -42,11 +32,7 @@ public class Root extends API {
             buffer.get(message).append(content);
             return callback + "();";
         }
-        return callback + "(" + write(folder, name, type, content).toPath() + ");";
-    }
-
-    public static void main(String... args) {
-        new Thread(new Root()).start();
+        return callback + "(" + IO.write(folder, name, type, content).toPath() + ");";
     }
 
     @Override
@@ -68,6 +54,10 @@ public class Root extends API {
 
     @QueryParam("content")
     private String content;
+
+    public static void main(String... args) {
+        new Thread(new Root()).start();
+    }
 
     public static Iterator<Object[]> getDataProvider() {
         List<Object[]> all = new LinkedList();

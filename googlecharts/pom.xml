@@ -6,6 +6,6 @@
     <artifactId>organick-googlecharts</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>organick-googlecharts</name>
+    <name>googlecharts</name>
 </project>
 

@@ -7,6 +7,15 @@ import java.nio.file.Files;
 
 public class IO implements Virtual {
 
+    public static File write(String folder, String name, String type, String content) {
+        try {
+            IO future = new IO(folder, name, type, content);
+            return future.call();
+        } catch (Exception ex) {
+            System.out.println("EXCEPTION writing to file!");
+            return null;
+        }
+    }
     @Override
     public File call() throws Exception {
         file = new File(folder + "/" + name + "." + type);
