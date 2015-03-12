@@ -7,7 +7,7 @@
     <version>1.0</version>
     <name>Middle Earth - Premier Player</name>
     <modules>
-        <module>natural</module>
+        <module>CombatSimulator</module>
         <module>pdfparser</module>
     </modules>
     <build>
