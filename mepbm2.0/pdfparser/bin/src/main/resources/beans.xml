@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx" xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+           http://www.springframework.org/schema/jee
+           http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/mepbm" />
+        <property name="username" value="root" />
+        <property name="password" value="mysql1337" />
+    </bean>
+
+    <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+            </props>
+        </property>
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.AllegianceImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.GameImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.NationImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.NationTurnImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.PlayerImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.TurnNumberImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.VictoryConditionImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.SNAImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.SeasonImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.NationRelationImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.RelationImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.CharacterTurnImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.SpellImpl</value>
+
+                <value>com.keene.pdfparser.mepbm.core.hibernate.PopulationCenterImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.CharacterImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.ArmyImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.ArtifactImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.NationMessageImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.OrderImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.HexImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.ResourceDetailsImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.ClimateImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.TerrainImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.MarketImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.MarketPricesImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.TroopsImpl</value>
+                <value>com.keene.pdfparser.mepbm.core.hibernate.VictoryPointsImpl</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="hibernateInterceptor" class="org.springframework.orm.hibernate3.HibernateInterceptor" autowire="byName" />
+    <bean id="gameDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.GameDAOImpl" autowire="byName" />
+    <bean id="playerDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.PlayerDAOImpl" autowire="byName" />
+    <bean id="nationDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.NationDAOImpl" autowire="byName" />
+    <bean id="nationTurnDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.NationTurnDAOImpl" autowire="byName" />
+    <bean id="seasonDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.SeasonDAOImpl" autowire="byName" />
+    <bean id="turnNumberDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.TurnNumberDAOImpl" autowire="byName" />
+    <bean id="snaDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.SNADAOImpl" autowire="byName" />
+    <bean id="allegianceDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.AllegianceDAOImpl" autowire="byName" />
+    <bean id="victoryConditionDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.VictoryConditionDAOImpl" autowire="byName" />
+    <bean id="relationDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.RelationDAOImpl" autowire="byName" />
+    <bean id="nationRelationDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.NationRelationDAOImpl" autowire="byName" />
+    <bean id="characterTurnDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.CharacterTurnDAOImpl" autowire="byName" />
+    <bean id="spellDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.SpellDAOImpl" autowire="byName" />
+    
+    <bean id="populationCenterDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.PopulationCenterDAOImpl" autowire="byName" />
+    <bean id="characterDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.CharacterDAOImpl" autowire="byName" />
+    <bean id="armyDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.ArmyDAOImpl" autowire="byName" />
+    <bean id="artifactDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.ArtifactDAOImpl" autowire="byName" />
+    <bean id="nationMessageDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.NationMessageDAOImpl" autowire="byName" />
+    <bean id="orderDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.OrderDAOImpl" autowire="byName" />
+    <bean id="hexDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.HexDAOImpl" autowire="byName" />
+    <bean id="resourceDetailsDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.ResourceDetailsDAOImpl" autowire="byName" />
+    <bean id="climateDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.ClimateDAOImpl" autowire="byName" />
+    <bean id="terrainDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.TerrainDAOImpl" autowire="byName" />
+    <bean id="marketDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.MarketDAOImpl" autowire="byName" />
+    <bean id="marketPricesDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.MarketPricesDAOImpl" autowire="byName" />
+    <bean id="troopsDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.TroopsDAOImpl" autowire="byName" />
+    <bean id="victoryPointsDaoTarget" class="com.keene.pdfparser.mepbm.core.hibernate.dao.impl.VictoryPointsDAOImpl" autowire="byName" />
+
+    <bean id="characterTurnDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.CharacterTurnDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>characterTurnDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="spellDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.SpellDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>spellDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="victoryPointsDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.VictoryPointsDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>victoryPointsDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="troopsDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.TroopsDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>troopsDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="marketPricesDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.MarketPricesDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>marketPricesDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="marketDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.MarketDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>marketDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="terrainDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.TerrainDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>terrainDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="climateDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.ClimateDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>climateDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="resourceDetailsDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.ResourceDetailsDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>resourceDetailsDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="hexDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.HexDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>hexDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="orderDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.OrderDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>orderDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="nationMessageDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.NationMessageDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>nationMessageDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="artifactDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.ArtifactDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>artifactDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="armyDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.ArmyDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>armyDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="gameDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.GameDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>gameDaoTarget</value>
+            </list>
+        </property>
+    </bean>    
+    <bean id="playerDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.PlayerDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>playerDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="nationDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.NationDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>nationDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="nationTurnDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.NationTurnDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>nationTurnDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="seasonDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.SeasonDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>seasonDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="turnNumberDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.TurnNumberDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>turnNumberDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="snaDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.SNADAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>snaDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="allegianceDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.AllegianceDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>allegianceDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="victoryConditionDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.VictoryConditionDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>victoryConditionDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="relationDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.RelationDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>relationDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="nationRelationDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.NationRelationDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>nationRelationDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="populationCenterDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.PopulationCenterDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>populationCenterDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="characterDAO" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>com.keene.pdfparser.mepbm.core.hibernate.dao.CharacterDAO</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+                <value>characterDaoTarget</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

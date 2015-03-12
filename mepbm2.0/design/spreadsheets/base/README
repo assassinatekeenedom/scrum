@@ -1,0 +1,29 @@
+
+edit
+Phase 1:
+
+This base project is designed to merely Model the data we will manipulate later.
+
+There are no functions or processes besides those required to initialize the Objects themselves.
+
+This framework should design the base interfaces that provide the flexibility and manipulation needed to make generic services and functions across projects.  These shared features can be placed within a 'common' application, that sits next to the base.
+
+  |  |  |
+--v--v--v--
+
+Phase 2:
+
+Future Projects:
+ - Common - functions, services, etc that are shared among multiple ME projects; or otherwise supports generic capabilities for the core framework.
+ - Turn Parser - will use the core framework to hold data collected from a turn pdf and xml.
+ - [Some] Spreadsheet Report - a project that outputs a .xls file that provies a report previously created by hand from data in the turn pdf, xml, or a calculation there-of.
+ ** Step one is just playing with something that writes .xls'; but ask me about setting up the .xls writer in a generic way such that we can swap to any persistent storage type we like once you get good with it. **
+
+  |  |  |
+--v--v--v--
+
+Phase 3:
+
+These future projects will ensure we have captured, organized, and calculated data that we already know we need; in a way we already know is useful.
+
+Once we produce all of the desired .xls reports we can discuss how best to begin creating another framework that takes the data we have and present it in the most useful possible way(s).
