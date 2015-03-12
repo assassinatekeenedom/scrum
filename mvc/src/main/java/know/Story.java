@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("")
 public class Story extends API {
-    
+
     @GET
     @Path("/{callback}/open.js")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -19,7 +19,7 @@ public class Story extends API {
         System.out.println("OPEN CALLED");
         return "opened";
     }
-    
+
     @GET
     @Path("/{callback}/close.js")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -27,7 +27,7 @@ public class Story extends API {
         System.out.println("CLOSE CALLED");
         return "closed";
     }
-    
+
     @GET
     @Path("/{callback}/select.js")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -35,7 +35,7 @@ public class Story extends API {
         System.out.println("SELECT CALLED");
         return "selected";
     }
-    
+
     @GET
     @Path("/{callback}/type.js")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -43,7 +43,7 @@ public class Story extends API {
         System.out.println("TYPE CALLED");
         return "typed";
     }
-    
+
     @GET
     @Path("/{callback}/click.js")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -51,17 +51,21 @@ public class Story extends API {
         System.out.println("CLICK CALLED");
         return "click";
     }
-    
+
+    public static void main(String... args) {
+        new Thread(new NIO()).start();
+    }
+
     public Story() {
         super();
     }
-    
+
     @QueryParam("target")
     private String target;
-    
+
     @QueryParam("value")
     private String value;
-    
+
     @Override
     public void run() {
         setProcess(getClass().getCanonicalName());
@@ -69,5 +73,5 @@ public class Story extends API {
         setPort(13371);
         super.run();
     }
-    
+
 }

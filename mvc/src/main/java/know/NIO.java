@@ -49,6 +49,10 @@ public class NIO extends API {
         return callback + "(" + write(folder, name, type, content).toPath() + ");";
     }
 
+    public static void main(String... args) {
+        new Thread(new NIO()).start();
+    }
+
     @Override
     public void run() {
         setProcess(getClass().getCanonicalName());
