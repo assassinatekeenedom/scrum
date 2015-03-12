@@ -9,7 +9,7 @@
     </parent>
     <artifactId>user</artifactId>
     <version>0.0.0.</version>
-    <name>Interface</name> 
+    <name>Branch</name> 
     <dependencies>
         <dependency>
             <groupId>assassin</groupId>
