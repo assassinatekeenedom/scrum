@@ -4,7 +4,7 @@
     <test name="action" >
         <classes>
             <class name="know.event.WriteValid"/>
-            <class name="know.event.WriteStory"/>
+            <!-- class name="know.event.WriteStory"/ -->
         </classes>
     </test>
 </suite>

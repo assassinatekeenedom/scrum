@@ -14,8 +14,8 @@ public class RestWork extends Worker {
     }
 
     @Override
-    public Aspect call() throws Exception {
-        Aspect aspect = super.call();
+    public void run() {
+        Aspect aspect = Aspect.get(getId());
         try {
             URL rest = new URL("http://localhost/");
             RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome());
@@ -34,7 +34,6 @@ public class RestWork extends Worker {
         } catch (Exception ex) {
             System.out.println(ex.getCause() + " ..RestWork ERROR!!.. " + ex.getMessage());
         }
-        return aspect;
     }
 
 }

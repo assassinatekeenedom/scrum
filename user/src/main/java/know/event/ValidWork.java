@@ -18,8 +18,8 @@ public class ValidWork extends Worker {
 
     @Override
     public Aspect call() throws Exception {
-        setId(Aspect.get(folder, name, type, content).getId());
-        Aspect aspect = super.call();
+        Aspect aspect = Aspect.get(folder, name, type, content);
+        setId(aspect.getId());
         try {
             URL rest = new URL("http://localhost:121/");
             RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome());
@@ -41,9 +41,11 @@ public class ValidWork extends Worker {
             String name = RestWork.class.getCanonicalName();
             System.out.println(Save.getJSON(aspect));
             builder.append(name);
-            builder.append("|\n|id|\n");
+            builder.append("|\n|id|call?|\n");
             builder.append("|");
             builder.append(aspect.getId());
+            builder.append("|");
+            builder.append(super.call());
             builder.append("|\n");
             String page = "/" + name + "." + user;
             add(new Open(page + "?edit"));
