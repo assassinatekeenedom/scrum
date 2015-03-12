@@ -44,9 +44,9 @@ public class ValidWork extends Worker {
             builder.append("|\n|id|call?|\n");
             builder.append("|");
             builder.append(aspect.getId());
-            builder.append("|");
+            builder.append("|!-");
             builder.append(super.call());
-            builder.append("|\n");
+            builder.append("-!|\n");
             String page = "/" + name + "." + user;
             add(new Open(page + "?edit"));
             add(new Type("id=pageContent", builder.toString()));
