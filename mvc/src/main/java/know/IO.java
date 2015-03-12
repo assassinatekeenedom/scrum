@@ -2,34 +2,49 @@ package know;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class IO implements Virtual {
 
-    private String type;
-    private String name;
-    private String folder;
-    private String virtual;
-
-    public IO(String folder, String name, String type, String virtual) {
-        this.type = type;
-        this.name = name;
-        this.folder = folder;
-        this.virtual = virtual;
+    public static Iterator<Object[]> getDataProvider() {
+        List<Object[]> all = new LinkedList();
+        List<Virtual> files = new LinkedList();
+        files.addAll(Arrays.asList(Bat.values()));
+        files.addAll(Arrays.asList(Conf.values()));
+        files.addAll(Arrays.asList(HTML.values()));
+        files.addAll(Arrays.asList(JS.values()));
+        for (Virtual file : files) {
+            all.add(new Object[]{file});
+        }
+        return all.iterator();
     }
 
     @Override
     public File call() throws Exception {
-        File file = new File(folder + "/" + name + "." + type);
-        if (file.exists()) {
-            Files.delete(file.toPath());
-        } else {
-            Files.createDirectories(file.getParentFile().toPath());
-        }
-        try (FileWriter fw = new FileWriter(file)) {
-            fw.write(virtual);
-        }
+        file = new File(folder + "/" + name + "." + type);
+        new Thread(this).start();
         return file;
+    }
+
+    @Override
+    public void run() {
+        try {
+            if (file.exists()) {
+                Files.delete(file.toPath());
+            } else {
+                Files.createDirectories(file.getParentFile().toPath());
+            }
+            try (FileWriter fw = new FileWriter(file)) {
+                fw.write(virtual);
+            }
+        } catch (IOException e) {
+            System.out.println("... ERROR writing file ...." + e.getLocalizedMessage());
+        }
     }
 
     @Override
@@ -74,5 +89,18 @@ public class IO implements Virtual {
 
     public IO() {
     }
+
+    public IO(String folder, String name, String type, String virtual) {
+        this.type = type;
+        this.name = name;
+        this.folder = folder;
+        this.virtual = virtual;
+    }
+
+    private String type;
+    private String name;
+    private String folder;
+    private String virtual;
+    private File file;
 
 }

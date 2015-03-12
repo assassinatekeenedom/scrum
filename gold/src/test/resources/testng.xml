@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
   
 <suite name="Resource" parallel="classes" thread-count="10">
-    <test name="regression">
+    <test name="sql" >
         <classes>
-            <!-- class name="know.AcceptStory"/ -->
+            <!-- class name="know.RealFile"/ -->
         </classes>
     </test>
 </suite>

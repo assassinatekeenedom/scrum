@@ -8,14 +8,14 @@
     <version>0.0.0.0</version>
     <name>Nate</name>    
     <modules>
+        <module>www</module>
         <module>mvc</module>
         <module>gold</module>
         <module>user</module>
-        <module>www</module>
     </modules>
     <properties>
         <assassin.version>0.0.0.0</assassin.version>
-        <jsoniop.version>0.0.0.2</jsoniop.version>
+        <jsoniop.version>0.0.0.3</jsoniop.version>
         <jackson.version>2.5.0</jackson.version>
         <grizzly.version>1.18.1</grizzly.version>
         <log4j.version>2.1</log4j.version>
@@ -72,22 +72,22 @@
         <dependencies>
             <dependency>
                 <groupId>assassin</groupId>
-                <artifactId>real</artifactId>
+                <artifactId>seed</artifactId>
                 <version>${jsoniop.version}</version>
             </dependency>
             <dependency>
                 <groupId>assassin</groupId>
-                <artifactId>virtual</artifactId>
+                <artifactId>grow</artifactId>
                 <version>${jsoniop.version}</version>
             </dependency>
             <dependency>
                 <groupId>assassin</groupId>
-                <artifactId>graph</artifactId>
+                <artifactId>leaf</artifactId>
                 <version>${jsoniop.version}</version>
             </dependency>
             <dependency>
                 <groupId>assassin</groupId>
-                <artifactId>user</artifactId>
+                <artifactId>branch</artifactId>
                 <version>${jsoniop.version}</version>
             </dependency>
             <dependency>

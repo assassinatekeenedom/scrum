@@ -7,9 +7,21 @@
         <artifactId>nate</artifactId>
         <version>0.0.0.0</version>
     </parent>
-    <artifactId>real</artifactId>
-    <version>0.0.0.2</version>
-    <name>Unknown Project</name>
+    <artifactId>grow</artifactId>
+    <version>0.0.0.3</version>
+    <name>Grow</name>
     <dependencies>
+        <dependency>
+            <groupId>assassin</groupId>
+            <artifactId>seed</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-grizzly2</artifactId>
+        </dependency>
     </dependencies>
 </project>

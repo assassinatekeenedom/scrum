@@ -2,14 +2,14 @@ package know.event;
 
 import know.Virtual;
 import know.Aspect;
-import know.NIO;
+import know.IO;
 import know.Save;
 import org.testng.annotations.Test;
 
 public class WriteStory {
 
     static {
-        new Thread(new NIO()).start();
+        new Thread(new IO()).start();
     }
 
     @Test(dataProvider = "files", dataProviderClass = WriteProvider.class)

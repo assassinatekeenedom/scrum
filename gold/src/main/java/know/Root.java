@@ -1,10 +1,6 @@
 package know;
 
 import java.io.File;
-import know.io.Bat;
-import know.io.Conf;
-import know.io.HTML;
-import know.io.JS;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -20,7 +16,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("")
-public class NIO extends API {
+public class Root extends API {
 
     private static final Map<String, StringBuilder> buffer = Collections.synchronizedMap(new HashMap());
 
@@ -50,7 +46,7 @@ public class NIO extends API {
     }
 
     public static void main(String... args) {
-        new Thread(new NIO()).start();
+        new Thread(new Root()).start();
     }
 
     @Override
@@ -61,7 +57,7 @@ public class NIO extends API {
         super.run();
     }
 
-    public NIO() {
+    public Root() {
     }
 
     @QueryParam("path")
@@ -72,18 +68,5 @@ public class NIO extends API {
 
     @QueryParam("content")
     private String content;
-
-    public static Iterator<Object[]> getDataProvider() {
-        List<Object[]> all = new LinkedList();
-        List<Virtual> files = new LinkedList();
-        files.addAll(Arrays.asList(Bat.values()));
-        files.addAll(Arrays.asList(Conf.values()));
-        files.addAll(Arrays.asList(HTML.values()));
-        files.addAll(Arrays.asList(JS.values()));
-        for (Virtual file : files) {
-            all.add(new Object[]{file});
-        }
-        return all.iterator();
-    }
 
 }

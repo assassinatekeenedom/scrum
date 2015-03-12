@@ -1,4 +1,4 @@
-package know.io;
+package know;
 
 import know.IO;
 import java.io.File;
@@ -94,5 +94,10 @@ public enum Conf implements Virtual {
     @Override
     public File call() throws Exception {
         return virtual.call();
+    }
+
+    @Override
+    public void run() {
+        virtual.run();
     }
 }

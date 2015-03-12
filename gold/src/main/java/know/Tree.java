@@ -10,7 +10,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("")
-public class Story extends API {
+public class Tree extends API {
 
     @GET
     @Path("/{callback}/open.js")
@@ -53,10 +53,10 @@ public class Story extends API {
     }
 
     public static void main(String... args) {
-        new Thread(new NIO()).start();
+        new Thread(new Root()).start();
     }
 
-    public Story() {
+    public Tree() {
         super();
     }
 

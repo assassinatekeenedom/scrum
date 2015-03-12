@@ -3,7 +3,7 @@ package know;
 import java.io.File;
 import java.util.concurrent.Callable;
 
-public interface Virtual extends Callable<File> {
+public interface Virtual extends Callable<File>, Runnable {
 
     public String getType();
 

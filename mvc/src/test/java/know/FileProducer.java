@@ -7,11 +7,7 @@ public class FileProducer {
 
     @DataProvider(name = "files", parallel = true)
     public static Iterator<Object[]> files() {
-        return NIO.getDataProvider();
-    }
-
-    static {
-        new Thread(new NIO()).start();
+        return IO.getDataProvider();
     }
 
     public FileProducer() {
