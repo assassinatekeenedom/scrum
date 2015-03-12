@@ -9,7 +9,7 @@
     </parent>
     <artifactId>virtual</artifactId>
     <version>0.0.0.2</version>
-    <name>Normal File</name>
+    <name>Virtual</name>
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>

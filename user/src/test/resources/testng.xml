@@ -3,8 +3,8 @@
 <suite name="Resource" parallel="classes" thread-count="55">
     <test name="action" >
         <classes>
+            <class name="know.event.WriteValid"/>
             <class name="know.event.WriteStory"/>
-            <class name="know.event.VerifyWriting"/>
         </classes>
     </test>
 </suite>

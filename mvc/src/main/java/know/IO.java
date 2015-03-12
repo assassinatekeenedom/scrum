@@ -3,7 +3,6 @@ package know;
 import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
-import know.Virtual;
 
 public class IO implements Virtual {
 

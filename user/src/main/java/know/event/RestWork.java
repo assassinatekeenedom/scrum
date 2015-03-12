@@ -32,7 +32,7 @@ public class RestWork extends Worker {
             add(new Close());
             super.action(browser);
         } catch (Exception ex) {
-            System.out.println(ex.getCause() + " ..write.. " + ex.getMessage());
+            System.out.println(ex.getCause() + " ..RestWork ERROR!!.. " + ex.getMessage());
         }
         return aspect;
     }

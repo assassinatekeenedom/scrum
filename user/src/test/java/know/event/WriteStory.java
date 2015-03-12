@@ -1,21 +1,18 @@
 package know.event;
 
-import know.NIO;
 import know.Virtual;
-import java.util.Iterator;
 import know.Aspect;
+import know.NIO;
 import know.Save;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class WriteStory {
 
-    @DataProvider(name = "files", parallel = true)
-    public static Iterator<Object[]> files() {
-        return NIO.getDataProvider();
+    static {
+        new Thread(new NIO()).start();
     }
 
-    @Test(dataProvider = "files")
+    @Test(dataProvider = "files", dataProviderClass = WriteProvider.class)
     public void handle(Virtual node) throws Exception {
         Aspect aspect = new Aspect();
         aspect.setFolder(node.getFolder());
@@ -25,7 +22,7 @@ public class WriteStory {
         Save.set(aspect);
         RestWork rest = new RestWork();
         rest.setId(aspect.getId());
-        System.out.println(rest.call());
+        rest.call();
     }
 
     public WriteStory() {
