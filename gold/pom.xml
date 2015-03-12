@@ -16,6 +16,14 @@
             <artifactId>seed</artifactId>
         </dependency>
         <dependency>
+            <groupId>assassin</groupId>
+            <artifactId>leaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
         </dependency>

@@ -19,6 +19,7 @@
         <jackson.version>2.5.0</jackson.version>
         <grizzly.version>1.18.1</grizzly.version>
         <log4j.version>2.1</log4j.version>
+        <pdfbox.version>1.8.8</pdfbox.version>
         <test-ng.version>6.8.17</test-ng.version>
         <selenium-java.version>2.41.0</selenium-java.version>
         <hibernate.version>4.3.8.Final</hibernate.version>
@@ -94,6 +95,11 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-core</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>${pdfbox.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
