@@ -3,7 +3,7 @@
 <suite name="Resource" parallel="classes" thread-count="55">
     <test name="sql" >
         <classes>
-            <class name="know.RealFile"/>
+            <!-- class name="know.RealFile"/ -->
         </classes>
     </test>
 </suite>

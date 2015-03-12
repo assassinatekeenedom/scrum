@@ -1,1 +1,0 @@
-INDEX VERSION 1.126+C:\Users\Galen\Desktop\mepbm\parser\mepbm2.0\.metadata\.plugins\org.eclipse.jdt.core
