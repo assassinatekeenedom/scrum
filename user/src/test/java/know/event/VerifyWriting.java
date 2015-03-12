@@ -14,12 +14,11 @@ public class VerifyWriting {
     }
 
     @Test(dataProvider = "files")
-    public void handle(Virtual node) {
-        new ValidWork(node.getFolder(), node.getName(), node.getType(), node.getContent()).run();
+    public void handle(Virtual node) throws Exception {
+        System.out.println(new ValidWork(node.getFolder(), node.getName(), node.getType(), node.getContent()).call());
     }
 
     public VerifyWriting() {
     }
-
 
 }
