@@ -4,25 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 public class IO implements Virtual {
-
-    public static Iterator<Object[]> getDataProvider() {
-        List<Object[]> all = new LinkedList();
-        List<Virtual> files = new LinkedList();
-        files.addAll(Arrays.asList(Bat.values()));
-        files.addAll(Arrays.asList(Conf.values()));
-        files.addAll(Arrays.asList(HTML.values()));
-        files.addAll(Arrays.asList(JS.values()));
-        for (Virtual file : files) {
-            all.add(new Object[]{file});
-        }
-        return all.iterator();
-    }
 
     @Override
     public File call() throws Exception {

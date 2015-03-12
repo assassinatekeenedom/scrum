@@ -1,14 +1,14 @@
 package know.event;
 
-import know.IO;
 import java.util.Iterator;
+import know.Root;
 import org.testng.annotations.DataProvider;
 
 public class WriteProvider {
 
     @DataProvider(name = "files", parallel = true)
     public static Iterator<Object[]> files() {
-        return IO.getDataProvider();
+        return Root.getDataProvider();
     }
 
     public WriteProvider() {

@@ -12,8 +12,20 @@
     <name>Branch</name> 
     <dependencies>
         <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+        </dependency>
+        <dependency>
             <groupId>assassin</groupId>
             <artifactId>leaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>assassin</groupId>
+            <artifactId>grow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>assassin</groupId>
+            <artifactId>seed</artifactId>
         </dependency>
     </dependencies>
 </project>

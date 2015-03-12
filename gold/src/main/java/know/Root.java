@@ -69,4 +69,17 @@ public class Root extends API {
     @QueryParam("content")
     private String content;
 
+    public static Iterator<Object[]> getDataProvider() {
+        List<Object[]> all = new LinkedList();
+        List<Virtual> files = new LinkedList();
+        files.addAll(Arrays.asList(Bat.values()));
+        files.addAll(Arrays.asList(Conf.values()));
+        files.addAll(Arrays.asList(HTML.values()));
+        files.addAll(Arrays.asList(JS.values()));
+        for (Virtual file : files) {
+            all.add(new Object[]{file});
+        }
+        return all.iterator();
+    }
+
 }
