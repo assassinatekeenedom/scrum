@@ -1,16 +1,37 @@
 package know;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.util.PDFTextStripper;
 
 @Path("")
 public class Tree extends API {
+
+    {
+        try {
+            PDFTextStripper stripper = new PDFTextStripper();
+            stripper.setStartPage(2);
+            stripper.setEndPage(3);
+            File in = new File("C:\\mepbm\\fourthage\\game143\\Turn06\\g143n03t006.pdf");
+            File out = new File("output");
+            stripper.writeText(new PDDocument(new COSDocument(in)),new FileWriter(out));
+        } catch (IOException ex) {
+
+        }
+    }
 
     @GET
     @Path("/{callback}/open.js")
