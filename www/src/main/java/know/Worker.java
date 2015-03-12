@@ -12,13 +12,14 @@ public class Worker extends ArrayList<Known> implements Runnable, Callable<Aspec
         if (id > -1) {
             aspect = Aspect.get(id);
             new Thread(this).start();
+            id = aspect.getId();
         }
         return aspect;
     }
 
     @Override
     public void run() {
-        id = aspect != null ? aspect.getId() : id;
+        System.out.println("Working on ::: " + aspect);
     }
 
     @Override
