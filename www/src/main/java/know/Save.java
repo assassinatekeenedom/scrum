@@ -2,6 +2,7 @@ package know;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.Callable;
 import org.hibernate.Session;
@@ -31,6 +32,10 @@ public class Save implements Callable<Object> {
         return selenium.openSession().get(type, id);
     }
 
+    public static synchronized List get(Class type) {
+        return selenium.openSession().createCriteria(type).list();
+    }
+
     public static String getJSON(Object any) {
         try {
             return new ObjectMapper().writeValueAsString(any);
@@ -50,7 +55,6 @@ public class Save implements Callable<Object> {
         properties.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
         properties.put("hibernate.connection.username", "root");
         properties.put("hibernate.connection.password", "");
-//        properties.put("hibernate.current_session_context_class", "thread");
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.connection.url", "jdbc:mysql://localhost/selenium");
         configuration.addAnnotatedClass(Action.class);

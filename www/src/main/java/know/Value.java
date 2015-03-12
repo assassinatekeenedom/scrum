@@ -11,11 +11,11 @@ import javax.persistence.Id;
 @Entity
 public class Value {
 
+    private static final Map<String, Value> cache = Collections.synchronizedMap(new HashMap());
+
     public static Value get(int id) {
         return (Value) Save.get(Value.class, id);
     }
-
-    private static final Map<String, Value> cache = Collections.synchronizedMap(new HashMap());
 
     public static Value get(String value) {
         return new Value(value).find();
