@@ -201,13 +201,15 @@ public final class Miscellaneous extends TurnPDFSection {
                 resources.setTimberStore(this.getData().isolateRightColumnNumber(this.getData().nextToken(), " "));
                 resources.setTimberProduction(this.getData().isolateRightColumnNumber(this.getData().nextToken(), " "));
             } else if (this.getData().getToken().contains("Current Tax rate")) {
-                upkeep.setTaxRate(this.getData().isolateRightColumnNumber(this.getData().nextToken(), " "));
+                upkeep.setTaxRate(this.getData().isolateRightColumnNumber(this.getData().nextToken(), "%"));
             } else if (this.getData().getToken().contains("Mounts")) {
                 resources.setMountsStore(this.getData().isolateRightColumnNumber(this.getData().nextToken(), " "));
                 resources.setMountsProduction(this.getData().isolateRightColumnNumber(this.getData().nextToken(), " "));
             } else if (this.getData().getToken().contains("Revenue")) {
                 upkeep.setGrossGold(this.getData().isolateRightColumnNumber(this.getData().nextToken(), " "));
+                this.getData().nextToken();
                 String net = this.getData().nextToken().replace("(", "").replace(")", "");
+                System.out.println("...... "+net);
                 net = net.replace("+", "");
                 upkeep.setNetGold(this.getData().isolateRightColumnNumber(net, " "));
             } else if (this.getData().getToken().contains("Gold reserve")) {

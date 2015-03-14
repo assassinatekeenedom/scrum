@@ -79,7 +79,8 @@ public final class ArmiesAndNavies extends TurnPDFSection{
         while (!"Food".equals(this.getData().getToken())) {
             this.getData().nextToken();
         }
-        army.setFood(this.getData().isolateRightColumnNumber(this.getData().nextToken(), " "));
+        
+        army.setFood(this.getData().isolateRightColumnNumber(this.getData().nextToken(), "Low Supplies !!"));
         this.getData().nextToken();
         if (this.getData().getToken().contains("Low Supplies") || this.getData().getToken().contains("Out of Food")) {
             this.getData().nextToken();

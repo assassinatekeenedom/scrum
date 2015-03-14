@@ -8,7 +8,8 @@ import org.junit.Test;
 
 public class PDFReaderTest {
 
-    private static String INPUTFILE = "C:\\mepbm\\fourthage\\game143\\Turn06\\g143n03t006";
+//    private static String INPUTFILE = "C:\\mepbm\\fourthage\\game143\\Turn03\\g143n03t006";
+    private static String INPUTFILE = "C:\\mepbm\\fourthage\\game143\\Turn03\\g143n03t003";
 
     public PDFReaderTest() {
     }
