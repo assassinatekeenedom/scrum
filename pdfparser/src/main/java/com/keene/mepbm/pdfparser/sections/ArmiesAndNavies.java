@@ -46,6 +46,8 @@ public final class ArmiesAndNavies extends TurnPDFSection {
             army.setTravelMode(this.getData().isolateRightColumnString(travelMode, "Travel mode  :"));
 
             this.parseRemainder((ArmyImpl) army);
+            System.out.println(Save.getJSON(Save.set(army.getHex().getTerrain())));
+            System.out.println(Save.getJSON(Save.set(army.getHex().getClimate())));
             System.out.println(Save.getJSON(Save.set(army.getHex())));
             System.out.println(Save.getJSON(Save.set(army.getArmyCommander())));
             System.out.println(Save.getJSON(Save.set(army)));
