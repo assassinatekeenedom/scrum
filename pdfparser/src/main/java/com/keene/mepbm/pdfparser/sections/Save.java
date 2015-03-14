@@ -16,6 +16,7 @@ import com.keene.mepbm.models.impl.PopulationCenterImpl;
 import com.keene.mepbm.models.impl.ResourceDetailsImpl;
 import com.keene.mepbm.models.impl.SeasonImpl;
 import com.keene.mepbm.models.impl.TerrainImpl;
+import com.keene.mepbm.models.impl.TroopsImpl;
 import com.keene.mepbm.models.impl.TurnNumberImpl;
 import com.keene.mepbm.models.impl.UpkeepImpl;
 import com.keene.mepbm.models.impl.VictoryPointsImpl;
@@ -91,6 +92,7 @@ public class Save implements Callable<Object> {
         configuration.addAnnotatedClass(UpkeepImpl.class);
         configuration.addAnnotatedClass(VictoryPointsImpl.class);
         configuration.addAnnotatedClass(MarketPricesImpl.class);
+        configuration.addAnnotatedClass(TroopsImpl.class);
         configuration.setProperties(properties);
         mepbm = configuration.buildSessionFactory(new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build());
     }

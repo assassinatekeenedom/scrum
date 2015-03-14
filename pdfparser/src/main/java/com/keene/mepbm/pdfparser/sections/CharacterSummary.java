@@ -1,6 +1,6 @@
 package com.keene.mepbm.pdfparser.sections;
 
-import com.keene.mepbm.models.Character;
+import com.keene.mepbm.models.impl.CharacterImpl;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,6 +17,11 @@ public final class CharacterSummary extends TurnPDFSection {
             if (summary == null) {
                 summary = "PDF Parser Error - no Summary Available";
             }
+            CharacterImpl character = new CharacterImpl();
+            character.setName(name);
+            character.setOrderSummary(summary);
+
+            System.out.println(Save.getJSON(Save.set(character)));
 //            Character character = this.getData().getPersistence().getCharacterDAO().load(name, this.getData().getActiveGame(), this.getData().getActiveNationTurn().getTurnNumber());
 //            character.setOrderSummary(summary);
 //            this.getData().getPersistence().getCharacterDAO().save(character);

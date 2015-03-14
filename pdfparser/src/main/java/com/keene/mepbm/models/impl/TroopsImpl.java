@@ -2,17 +2,33 @@ package com.keene.mepbm.models.impl;
 
 import com.keene.mepbm.models.Army;
 import com.keene.mepbm.models.Troops;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
 public class TroopsImpl implements Troops<Army> {
 
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
     private int troopsId;
+    @Column()
     private int numbers;
+    @Column()
     private int training;
+    @Column()
     private int weapons;
+    @Column()
     private int armor;
+    @Column()
     private String troopType;
+    @Column()
     private String description;
-    private Army army;
+    @OneToOne
+    private ArmyImpl army;
 
     public TroopsImpl() {
     }
@@ -94,7 +110,7 @@ public class TroopsImpl implements Troops<Army> {
 
     @Override
     public void setArmy(Army army) {
-        this.army = army;
+        this.army = (ArmyImpl) army;
     }
 
     @Override

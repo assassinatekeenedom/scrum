@@ -23,16 +23,16 @@ public final class Orders extends TurnPDFSection {
                 char tokenB = this.getData().getToken().charAt(1);
                 try {
                     if (tokenP >= 'A' && tokenP <= 'Z' && tokenB >= 'a' && tokenB <= 'z') {
-                        Order order = this.parseOrder();
+                        System.out.println(Save.getJSON(Save.set(this.parseOrder())));
                     }
                 } catch (Exception e) {
                     return;
                 }
-            } else if (this.getData().getToken().length()==1 && this.getData().getToken().charAt(0) >= 'A' && this.getData().getToken().charAt(0) >= 'Z') {
+            } else if (this.getData().getToken().length() == 1 && this.getData().getToken().charAt(0) >= 'A' && this.getData().getToken().charAt(0) >= 'Z') {
                 return;
             }
-            if(this.getData().nextToken().length()==1){
-                if(this.getData().getToken().charAt(0)>= 'A' && this.getData().getToken().charAt(0)<= 'Z'){
+            if (this.getData().nextToken().length() == 1) {
+                if (this.getData().getToken().charAt(0) >= 'A' && this.getData().getToken().charAt(0) <= 'Z') {
                     break;
                 }
             }

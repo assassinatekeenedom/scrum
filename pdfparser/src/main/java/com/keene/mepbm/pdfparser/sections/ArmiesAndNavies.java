@@ -77,6 +77,12 @@ public final class ArmiesAndNavies extends TurnPDFSection {
         troops.setNumbers(this.getData().isolateRightColumnNumber(this.getData().nextToken(), " "));
         troops.setTroopType(this.getData().nextToken());
         this.getData().nextToken();
+        System.out.println(Save.getJSON(Save.set(troops.getArmy().getHex().getTerrain())));
+        System.out.println(Save.getJSON(Save.set(troops.getArmy().getHex().getClimate())));
+        System.out.println(Save.getJSON(Save.set(troops.getArmy().getHex())));
+        System.out.println(Save.getJSON(Save.set(troops.getArmy().getArmyCommander())));
+        System.out.println(Save.getJSON(Save.set(troops.getArmy())));
+        System.out.println(Save.getJSON(Save.set(troops)));
     }
 
     private void parseBaggageTrain(ArmyImpl army) {
@@ -84,7 +90,6 @@ public final class ArmiesAndNavies extends TurnPDFSection {
         while (!"Food".equals(this.getData().getToken())) {
             this.getData().nextToken();
         }
-
         army.setFood(this.getData().isolateRightColumnNumber(this.getData().nextToken(), "Low Supplies !!"));
         this.getData().nextToken();
         if (this.getData().getToken().contains("Low Supplies") || this.getData().getToken().contains("Out of Food")) {
@@ -124,6 +129,9 @@ public final class ArmiesAndNavies extends TurnPDFSection {
                 end = token.length();
             }
             String name = token.substring(start, end);
+            CharacterImpl comm = new CharacterImpl();
+            comm.setName(name);
+            army.setArmyCommander(comm);
 //            Character character = this.getData().getPersistence().getCharacterDAO().load(name, this.getData().getActiveGame(), this.getData().getActiveNationTurn().getTurnNumber());
 //            character.setInArmy(army);
 //            this.getData().getPersistence().getCharacterDAO().save(character);
