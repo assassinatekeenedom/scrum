@@ -8,6 +8,7 @@
     <version>0.0.0.0</version>
     <name>Nate</name>    
     <modules>
+        <module>pdfparser</module>
         <module>www</module>
         <module>mvc</module>
         <module>gold</module>

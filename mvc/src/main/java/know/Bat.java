@@ -1,8 +1,6 @@
 package know;
 
-import know.IO;
 import java.io.File;
-import know.Virtual;
 
 public enum Bat implements Virtual {
 
@@ -13,7 +11,11 @@ public enum Bat implements Virtual {
     DB_LOG(new IO("C:/selenium/golden/target/bin", "log", "bat", "@ECHO OFF\nif exist C:\\selenium\\golden\\target\\log\\desc rmdir /s /q C:\\selenium\\golden\\target\\log\\desc\nif exist C:\\selenium\\golden\\target\\log\\select rmdir /s /q C:\\selenium\\golden\\target\\log\\select\nmkdir C:\\selenium\\golden\\target\\log\\desc\nmkdir C:\\selenium\\golden\\target\\log\\select\nstart C:\\selenium\\golden\\target\\bin\\dbcommand.bat \"desc node\" \"desc\\node.log\"\nstart C:\\selenium\\golden\\target\\bin\\dbcommand.bat \"select * from node\" \"select\\node.log\"\nstart C:\\selenium\\golden\\target\\bin\\dbcommand.bat \"desc edge\" \"desc\\edge.log\"\nstart C:\\selenium\\golden\\target\\bin\\dbcommand.bat \"select * from edge\" \"select\\edge.log\"\n\nstart C:\\selenium\\golden\\target\\bin\\dbcommand.bat \"desc api\" \"desc\\api.log\"\nstart C:\\selenium\\golden\\target\\bin\\dbcommand.bat \"select * from api\" \"select\\api.log\"\nstart C:\\selenium\\golden\\target\\bin\\dbsave.bat")),
     DB_COMMAND(new IO("C:/selenium/golden/target/bin", "dbcommand", "bat", "@ECHO OFF\nC:\\bin\\mysql\\bin\\mysql.exe selenium -u root --execute=%1% | echo %%i% > C:\\selenium\\golden\\target\\log\\%2%\nexit")),
     DB_GOLDEN(new IO("C:/selenium/golden/target/bin", "dbgolden", "bat", "@ECHO OFF\nstart dbadmin.bat \"show databases\"")),
-    DB_CLEAN(new IO("C:/selenium/golden/target/bin", "dbclean", "bat", "@ECHO OFF\nC:\\bin\\mysql\\bin\\mysql.exe -u root --execute=\"drop database selenium\"\nC:\\bin\\mysql\\bin\\mysql.exe -u root --execute=\"create database selenium\"")),
+    DB_CLEAN(new IO("C:/selenium/golden/target/bin", "dbclean", "bat", "@ECHO OFF\n"
+            + "C:\\bin\\mysql\\bin\\mysql.exe -u root --execute=\"drop database selenium\"\n"
+            + "C:\\bin\\mysql\\bin\\mysql.exe -u root --execute=\"drop database mepbm\"\n"
+            + "C:\\bin\\mysql\\bin\\mysql.exe -u root --execute=\"create database selenium\"\n"
+            + "C:\\bin\\mysql\\bin\\mysql.exe -u root --execute=\"create database mepbm\"")),
     DB_DROP(new IO("C:/selenium/golden/target/bin", "drop", "bat", "@ECHO OFF\nC:\\bin\\mysql\\bin\\mysql.exe -u root --execute=\"drop database %1%\"\nexit")),
     GIT_PULL(new IO("C:/selenium/golden/target/bin", "pull", "bat", "@echo off\ncd ..\\..\\\ngit pull\ncd golden\\target")),
     GIT_PUSH(new IO("C:/selenium/golden/target/bin", "push", "bat", "@echo off\ncall C:\\selenium\\golden\\target\\bin\\dbclean.bat\ncall C:\\selenium\\golden\\target\\bin\\stop.bat\ncall C:\\selenium\\golden\\target\\bin\\commit.bat \"An Automated Commit Message\"\nstart C:\\selenium\\golden\\target\\bin\\services.bat\nstart C:\\selenium\\golden\\target\\bin\\hub.bat\nstart C:\\selenium\\golden\\target\\bin\\selenium.bat")),
