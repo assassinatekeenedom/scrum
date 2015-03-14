@@ -64,7 +64,6 @@ public class Save implements Callable<Object> {
         configuration.addAnnotatedClass(Image.class);
         configuration.addAnnotatedClass(Event.class);
         configuration.addAnnotatedClass(Aspect.class);
-        configuration.addAnnotatedClass(Save.class);
         configuration.setProperties(properties);
         selenium = configuration.buildSessionFactory(new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build());
     }

@@ -8,24 +8,49 @@ import com.keene.mepbm.models.ResourceDetails;
 import com.keene.mepbm.models.TurnNumber;
 import com.keene.mepbm.models.Upkeep;
 import com.keene.mepbm.models.VictoryPoints;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
+@Entity
 public class NationTurnImpl implements NationTurn<Allegiance, Nation, TurnNumber, VictoryPoints, ResourceDetails, Game, Upkeep> {
 
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
     private int nationTurnId;
+    @Column()
     private boolean eliminated;
+    @Column()
     private boolean winner;
+    @Column()
     private int totalVictoryPoints;
+    @Column()
     private long runOnDate;
+    @Column()
     private boolean specialService;
+    @Column()
     private int warships;
+    @Column()
     private int transports;
-    private Game game;
-    private Nation nation;
-    private ResourceDetails resourceDetails;
-    private Upkeep upkeep;
-    private TurnNumber turnNumber;
-    private Allegiance allegiance;
-    private VictoryPoints victoryPoints;
+
+    @OneToOne
+    private GameImpl game;
+    @OneToOne
+    private NationImpl nation;
+    @OneToOne
+    private ResourceDetailsImpl resourceDetails;
+    @OneToOne
+    private UpkeepImpl upkeep;
+    @OneToOne
+    private TurnNumberImpl turnNumber;
+    @OneToOne
+    private AllegianceImpl allegiance;
+    @OneToOne
+    private VictoryPointsImpl victoryPoints;
 
     public NationTurnImpl() {
     }
@@ -37,7 +62,7 @@ public class NationTurnImpl implements NationTurn<Allegiance, Nation, TurnNumber
 
     @Override
     public void setAllegiance(Allegiance allegiance) {
-        this.allegiance = allegiance;
+        this.allegiance = (AllegianceImpl) allegiance;
     }
 
     @Override
@@ -57,7 +82,7 @@ public class NationTurnImpl implements NationTurn<Allegiance, Nation, TurnNumber
 
     @Override
     public void setTurnNumber(TurnNumber turnNumber) {
-        this.turnNumber = turnNumber;
+        this.turnNumber = (TurnNumberImpl) turnNumber;
     }
 
     @Override
@@ -117,7 +142,7 @@ public class NationTurnImpl implements NationTurn<Allegiance, Nation, TurnNumber
 
     @Override
     public void setVictoryPoints(VictoryPoints victoryPoints) {
-        this.victoryPoints = victoryPoints;
+        this.victoryPoints = (VictoryPointsImpl) victoryPoints;
     }
 
     @Override
@@ -127,7 +152,7 @@ public class NationTurnImpl implements NationTurn<Allegiance, Nation, TurnNumber
 
     @Override
     public void setNation(Nation nation) {
-        this.nation = nation;
+        this.nation = (NationImpl) nation;
     }
 
     @Override
@@ -137,7 +162,7 @@ public class NationTurnImpl implements NationTurn<Allegiance, Nation, TurnNumber
 
     @Override
     public void setResourceDetails(ResourceDetails resourceDetails) {
-        this.resourceDetails = resourceDetails;
+        this.resourceDetails = (ResourceDetailsImpl) resourceDetails;
     }
 
     @Override
@@ -147,7 +172,7 @@ public class NationTurnImpl implements NationTurn<Allegiance, Nation, TurnNumber
 
     @Override
     public void setGame(Game game) {
-        this.game = game;
+        this.game = (GameImpl) game;
     }
 
     @Override
@@ -157,7 +182,7 @@ public class NationTurnImpl implements NationTurn<Allegiance, Nation, TurnNumber
 
     @Override
     public void setUpkeep(Upkeep upkeep) {
-        this.upkeep = upkeep;
+        this.upkeep = (UpkeepImpl) upkeep;
     }
 
     @Override

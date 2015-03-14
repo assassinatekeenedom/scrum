@@ -3,17 +3,33 @@ package com.keene.mepbm.models.impl;
 import com.keene.mepbm.models.Nation;
 import com.keene.mepbm.models.NationTurn;
 import com.keene.mepbm.models.VictoryPoints;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
 public class VictoryPointsImpl implements VictoryPoints<Nation, NationTurn> {
 
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
     private int victoryPointsId;
+    @Column()
     private int army;
+    @Column()
     private int acharacter;
+    @Column()
     private int wealth;
+    @Column()
     private int populationCenter;
+    @Column()
     private int individual;
-    private Nation nation;
-    private NationTurn nationTurn;
+    @OneToOne
+    private NationImpl nation;
+    @OneToOne
+    private NationTurnImpl nationTurn;
 
     public VictoryPointsImpl() {
     }
@@ -85,7 +101,7 @@ public class VictoryPointsImpl implements VictoryPoints<Nation, NationTurn> {
 
     @Override
     public void setNation(Nation nation) {
-        this.nation = nation;
+        this.nation = (NationImpl) nation;
     }
 
     @Override
@@ -95,7 +111,7 @@ public class VictoryPointsImpl implements VictoryPoints<Nation, NationTurn> {
 
     @Override
     public void setNationTurn(NationTurn nationTurn) {
-        this.nationTurn = nationTurn;
+        this.nationTurn = (NationTurnImpl) nationTurn;
     }
 
     @Override

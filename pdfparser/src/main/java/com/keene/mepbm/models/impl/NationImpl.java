@@ -4,15 +4,29 @@ import com.keene.mepbm.models.Game;
 import com.keene.mepbm.models.Nation;
 import com.keene.mepbm.models.Player;
 import com.keene.mepbm.models.VictoryCondition;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
 public class NationImpl implements Nation<Game, Player, VictoryCondition> {
 
-    private int nationId;
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
+    private int id;
+    @Column()
     private String name;
+    @Column()
     private String email;
+    @Column()
     private int number;
-    private Player player;
-    private Game game;
+    @OneToOne
+    private PlayerImpl player;
+    @OneToOne
+    private GameImpl game;
 
     public NationImpl() {
     }
@@ -29,12 +43,12 @@ public class NationImpl implements Nation<Game, Player, VictoryCondition> {
 
     @Override
     public int getNationId() {
-        return nationId;
+        return id;
     }
 
     @Override
     public void setNationId(int nationId) {
-        this.nationId = nationId;
+        this.id = nationId;
     }
 
     @Override
@@ -54,7 +68,7 @@ public class NationImpl implements Nation<Game, Player, VictoryCondition> {
 
     @Override
     public void setPlayer(Player player) {
-        this.player = player;
+        this.player = (PlayerImpl) player;
     }
 
     @Override
@@ -64,7 +78,7 @@ public class NationImpl implements Nation<Game, Player, VictoryCondition> {
 
     @Override
     public void setGame(Game game) {
-        this.game = game;
+        this.game = (GameImpl) game;
     }
 
     @Override

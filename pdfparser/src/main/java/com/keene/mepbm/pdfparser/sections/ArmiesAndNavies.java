@@ -7,7 +7,7 @@ import com.keene.mepbm.models.impl.ArmyImpl;
 import com.keene.mepbm.models.impl.CharacterImpl;
 import com.keene.mepbm.models.impl.TroopsImpl;
 
-public final class ArmiesAndNavies extends TurnPDFSection{
+public final class ArmiesAndNavies extends TurnPDFSection {
 
     public ArmiesAndNavies() {
     }
@@ -31,7 +31,7 @@ public final class ArmiesAndNavies extends TurnPDFSection{
             this.getData().nextToken();
             Character commander = new CharacterImpl();
             Army army = new ArmyImpl();
-            army.setHex((Hex)this.getData().parseLocation());
+            army.setHex((Hex) this.getData().parseLocation());
             token = this.getData().nextToken();
 
             String morale = token.substring(0, token.indexOf("  Warships :"));
@@ -45,7 +45,8 @@ public final class ArmiesAndNavies extends TurnPDFSection{
             army.setTransports(this.getData().isolateRightColumnNumber(transports, "Transports  :"));
             army.setTravelMode(this.getData().isolateRightColumnString(travelMode, "Travel mode  :"));
 
-            this.parseRemainder((ArmyImpl)army);
+            this.parseRemainder((ArmyImpl) army);
+            System.out.println(Save.getJSON(Save.set((ArmyImpl) army)));
         } else {
             token = this.getData().nextToken();
         }
@@ -79,7 +80,7 @@ public final class ArmiesAndNavies extends TurnPDFSection{
         while (!"Food".equals(this.getData().getToken())) {
             this.getData().nextToken();
         }
-        
+
         army.setFood(this.getData().isolateRightColumnNumber(this.getData().nextToken(), "Low Supplies !!"));
         this.getData().nextToken();
         if (this.getData().getToken().contains("Low Supplies") || this.getData().getToken().contains("Out of Food")) {
@@ -113,9 +114,9 @@ public final class ArmiesAndNavies extends TurnPDFSection{
 
     private void parseCharactersWithArmy(String token, ArmyImpl army) {
         while (token.contains(" - ")) {
-            int start = token.indexOf(" - ")+" - ".length();
+            int start = token.indexOf(" - ") + " - ".length();
             int end = token.indexOf(" - ", start);
-            if(end < 0){
+            if (end < 0) {
                 end = token.length();
             }
             String name = token.substring(start, end);

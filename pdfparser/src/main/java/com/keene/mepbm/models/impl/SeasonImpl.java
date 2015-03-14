@@ -1,10 +1,19 @@
 package com.keene.mepbm.models.impl;
 
 import com.keene.mepbm.models.Season;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class SeasonImpl implements Season {
 
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
     private int seasonId;
+    @Column()
     private String name;
 
     public SeasonImpl() {

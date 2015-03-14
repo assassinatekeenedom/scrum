@@ -1,10 +1,19 @@
 package com.keene.mepbm.models.impl;
 
 import com.keene.mepbm.models.Allegiance;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class AllegianceImpl implements Allegiance {
 
-    private int allegianceId;
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
+    private int id;
+    @Column()
     private String allegianceName;
 
     public AllegianceImpl() {
@@ -12,12 +21,12 @@ public class AllegianceImpl implements Allegiance {
 
     @Override
     public int getAllegianceId() {
-        return allegianceId;
+        return id;
     }
 
     @Override
     public void setAllegianceId(int allegianceId) {
-        this.allegianceId = allegianceId;
+        this.id = allegianceId;
     }
 
     @Override

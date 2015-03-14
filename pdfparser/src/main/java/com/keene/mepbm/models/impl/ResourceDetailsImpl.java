@@ -6,31 +6,61 @@ import com.keene.mepbm.models.PopulationCenter;
 import com.keene.mepbm.models.ResourceDetails;
 import com.keene.mepbm.models.TurnNumber;
 import com.keene.mepbm.models.Upkeep;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
 public class ResourceDetailsImpl implements ResourceDetails<PopulationCenter, Nation, TurnNumber, MarketPrices, Upkeep> {
 
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
     private int resourceDetailsId;
+    @Column()
     private int leatherStore;
+    @Column()
     private int leatherProduction;
+    @Column()
     private int bronzeStore;
+    @Column()
     private int bronzeProduction;
+    @Column()
     private int steelStore;
+    @Column()
     private int steelProduction;
+    @Column()
     private int mithrilStore;
+    @Column()
     private int mithrilProduction;
+    @Column()
     private int foodStore;
+    @Column()
     private int foodProduction;
+    @Column()
     private int timberStore;
+    @Column()
     private int timberProduction;
+    @Column()
     private int mountsStore;
+    @Column()
     private int mountsProduction;
+    @Column()
     private int goldStore;
+    @Column()
     private int goldProduction;
-    private PopulationCenter populationCenter;
-    private Nation nation;
-    private TurnNumber turnNumber;
-    private MarketPrices marketPrices;
-    private Upkeep upkeep;
+    @OneToOne
+    private PopulationCenterImpl populationCenter;
+    @OneToOne
+    private NationImpl nation;
+    @OneToOne
+    private TurnNumberImpl turnNumber;
+    @OneToOne
+    private MarketPricesImpl marketPrices;
+    @OneToOne
+    private UpkeepImpl upkeep;
 
     public ResourceDetailsImpl() {
     }
@@ -212,7 +242,7 @@ public class ResourceDetailsImpl implements ResourceDetails<PopulationCenter, Na
 
     @Override
     public void setNation(Nation nation) {
-        this.nation = nation;
+        this.nation = (NationImpl) nation;
     }
 
     @Override
@@ -222,7 +252,7 @@ public class ResourceDetailsImpl implements ResourceDetails<PopulationCenter, Na
 
     @Override
     public void setPopulationCenter(PopulationCenter populationCenter) {
-        this.populationCenter = populationCenter;
+        this.populationCenter = (PopulationCenterImpl) populationCenter;
     }
 
     @Override
@@ -232,7 +262,7 @@ public class ResourceDetailsImpl implements ResourceDetails<PopulationCenter, Na
 
     @Override
     public void setTurnNumber(TurnNumber turnNumber) {
-        this.turnNumber = turnNumber;
+        this.turnNumber = (TurnNumberImpl) turnNumber;
     }
 
     @Override
@@ -242,7 +272,7 @@ public class ResourceDetailsImpl implements ResourceDetails<PopulationCenter, Na
 
     @Override
     public void setMarketPrices(MarketPrices marketPrices) {
-        this.marketPrices = marketPrices;
+        this.marketPrices = (MarketPricesImpl) marketPrices;
     }
 
     @Override
@@ -252,7 +282,7 @@ public class ResourceDetailsImpl implements ResourceDetails<PopulationCenter, Na
 
     @Override
     public void setUpkeep(Upkeep upkeep) {
-        this.upkeep = upkeep;
+        this.upkeep = (UpkeepImpl) upkeep;
     }
 
     @Override

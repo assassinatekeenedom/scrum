@@ -4,21 +4,41 @@ import com.keene.mepbm.models.Hex;
 import com.keene.mepbm.models.NationTurn;
 import com.keene.mepbm.models.PopulationCenter;
 import com.keene.mepbm.models.TurnNumber;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
 public class PopulationCenterImpl implements PopulationCenter<TurnNumber, Hex, NationTurn> {
 
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
     private int populationCenterId;
+    @Column()
     private String name;
+    @Column()
     private int loyalty;
+    @Column()
     private String pcSize;
+    @Column()
     private String fortification;
+    @Column()
     private boolean capital;
+    @Column()
     private String docks;
+    @Column()
     private boolean hidden;
+    @Column()
     private boolean sieged;
-    private TurnNumber turnNumber;
-    private Hex hex;
-    private NationTurn nationTurn;
+    @OneToOne
+    private TurnNumberImpl turnNumber;
+    @OneToOne
+    private HexImpl hex;
+    @OneToOne
+    private NationTurnImpl nationTurn;
 
     public PopulationCenterImpl() {
     }
@@ -60,7 +80,7 @@ public class PopulationCenterImpl implements PopulationCenter<TurnNumber, Hex, N
 
     @Override
     public void setHex(Hex hex) {
-        this.hex = hex;
+        this.hex = (HexImpl) hex;
     }
 
     @Override
@@ -130,7 +150,7 @@ public class PopulationCenterImpl implements PopulationCenter<TurnNumber, Hex, N
 
     @Override
     public void setTurnNumber(TurnNumber turnNumber) {
-        this.turnNumber = turnNumber;
+        this.turnNumber = (TurnNumberImpl) turnNumber;
     }
 
     @Override
@@ -140,7 +160,7 @@ public class PopulationCenterImpl implements PopulationCenter<TurnNumber, Hex, N
 
     @Override
     public void setNationTurn(NationTurn nationTurn) {
-        this.nationTurn = nationTurn;
+        this.nationTurn = (NationTurnImpl) nationTurn;
     }
 
     @Override

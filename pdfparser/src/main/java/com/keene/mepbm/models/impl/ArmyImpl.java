@@ -5,21 +5,45 @@ import com.keene.mepbm.models.Character;
 import com.keene.mepbm.models.Hex;
 import com.keene.mepbm.models.Nation;
 import com.keene.mepbm.models.TurnNumber;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-public class ArmyImpl implements Army<Character, Hex, TurnNumber, Nation>{
+@Entity
+public class ArmyImpl implements Army<Character, Hex, TurnNumber, Nation> {
 
-    private int armyId;
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
+    private int id;
+    @Column()
     private int morale;
+    @Column()
     private int food;
+    @Column()
     private int warships;
+    @Column()
     private int transports;
+    @Column()
     private int warMachines;
+    @Column()
     private String travelMode;
+    @Column(length = Integer.MAX_VALUE)
     private String armyDetails;
-    private Hex hex;
-    private TurnNumber turnNumber;
-    private Character armyCommander;
-    private Nation nation;
+
+    @OneToOne
+    private HexImpl hex;
+
+    @OneToOne
+    private TurnNumberImpl turnNumber;
+
+    @OneToOne
+    private CharacterImpl armyCommander;
+
+    @OneToOne
+    private NationImpl nation;
 
     public ArmyImpl() {
     }
@@ -31,7 +55,7 @@ public class ArmyImpl implements Army<Character, Hex, TurnNumber, Nation>{
 
     @Override
     public void setArmyCommander(Character armyCommander) {
-        this.armyCommander = armyCommander;
+        this.armyCommander = (CharacterImpl) armyCommander;
     }
 
     @Override
@@ -41,7 +65,7 @@ public class ArmyImpl implements Army<Character, Hex, TurnNumber, Nation>{
 
     @Override
     public void setHex(Hex hex) {
-        this.hex = hex;
+        this.hex = (HexImpl) hex;
     }
 
     @Override
@@ -116,12 +140,12 @@ public class ArmyImpl implements Army<Character, Hex, TurnNumber, Nation>{
 
     @Override
     public int getArmyId() {
-        return armyId;
+        return id;
     }
 
     @Override
     public void setArmyId(int armyId) {
-        this.armyId = armyId;
+        this.id = armyId;
     }
 
     @Override
@@ -131,7 +155,7 @@ public class ArmyImpl implements Army<Character, Hex, TurnNumber, Nation>{
 
     @Override
     public void setTurnNumber(TurnNumber turnNumber) {
-        this.turnNumber = turnNumber;
+        this.turnNumber = (TurnNumberImpl) turnNumber;
     }
 
     @Override
@@ -141,7 +165,7 @@ public class ArmyImpl implements Army<Character, Hex, TurnNumber, Nation>{
 
     @Override
     public void setNation(Nation nation) {
-        this.nation = nation;
+        this.nation = (NationImpl) nation;
     }
 
     @Override

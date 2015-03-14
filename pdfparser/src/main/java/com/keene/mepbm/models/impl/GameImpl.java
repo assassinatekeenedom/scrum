@@ -1,12 +1,23 @@
 package com.keene.mepbm.models.impl;
 
 import com.keene.mepbm.models.Game;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class GameImpl implements Game {
 
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
     private int gameId;
+    @Column()
     private int number;
+    @Column()
     private String module;
+    @Column()
     private String description;
 
     public GameImpl() {

@@ -8,34 +8,67 @@ import com.keene.mepbm.models.Nation;
 import com.keene.mepbm.models.NationTurn;
 import com.keene.mepbm.models.PopulationCenter;
 import com.keene.mepbm.models.TurnNumber;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
 public class CharacterImpl implements Character<Game, TurnNumber, Hex, Nation, NationTurn, Army, PopulationCenter, Character> {
 
-    private int characterId;
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
+    private int id;
+    @Column()
     private String name;
+    @Column()
     private int mageRank;
+    @Column()
     private int emissaryRank;
+    @Column()
     private int commandRank;
+    @Column()
     private int agentRank;
+    @Column()
     private int stealth;
+    @Column()
     private int totalMageRank;
+    @Column()
     private int totalEmissaryRank;
+    @Column()
     private int totalCommandRank;
+    @Column()
     private int totalAgentRank;
+    @Column()
     private int totalStealth;
+    @Column()
     private int health;
+    @Column()
     private int challengeRank;
+    @Column()
     private boolean kidnapped;
+    @Column()
     private String orderSummary;
-    private TurnNumber turnNumber;
-    private Hex hex;
-    private Nation hostageOf;
-    private Character heldBy;
-    private Nation doubleAgentOf;
-    private Game game;
-    private NationTurn nationTurn;
-    private Army inArmy;
-    private PopulationCenter populationCenter;
+    @OneToOne
+    private TurnNumberImpl turnNumber;
+    @OneToOne
+    private HexImpl hex;
+    @OneToOne
+    private NationImpl hostageOf;
+    @OneToOne
+    private CharacterImpl heldBy;
+    @OneToOne
+    private NationImpl doubleAgentOf;
+    @OneToOne
+    private GameImpl game;
+    @OneToOne
+    private NationTurnImpl nationTurn;
+    @OneToOne
+    private ArmyImpl inArmy;
+    @OneToOne
+    private PopulationCenterImpl populationCenter;
 
     public CharacterImpl() {
     }
@@ -52,12 +85,12 @@ public class CharacterImpl implements Character<Game, TurnNumber, Hex, Nation, N
 
     @Override
     public int getCharacterId() {
-        return characterId;
+        return id;
     }
 
     @Override
     public void setCharacterId(int characterId) {
-        this.characterId = characterId;
+        this.id = characterId;
     }
 
     @Override
@@ -67,7 +100,7 @@ public class CharacterImpl implements Character<Game, TurnNumber, Hex, Nation, N
 
     @Override
     public void setGame(Game game) {
-        this.game = game;
+        this.game = (GameImpl) game;
     }
 
     @Override
@@ -127,7 +160,7 @@ public class CharacterImpl implements Character<Game, TurnNumber, Hex, Nation, N
 
     @Override
     public void setHex(Hex hex) {
-        this.hex = hex;
+        this.hex = (HexImpl) hex;
     }
 
     @Override
@@ -167,7 +200,7 @@ public class CharacterImpl implements Character<Game, TurnNumber, Hex, Nation, N
 
     @Override
     public void setTurnNumber(TurnNumber turnNumber) {
-        this.turnNumber = turnNumber;
+        this.turnNumber = (TurnNumberImpl) turnNumber;
     }
 
     @Override
@@ -177,7 +210,7 @@ public class CharacterImpl implements Character<Game, TurnNumber, Hex, Nation, N
 
     @Override
     public void setDoubleAgentOf(Nation doubleAgentOf) {
-        this.doubleAgentOf = doubleAgentOf;
+        this.doubleAgentOf = (NationImpl) doubleAgentOf;
     }
 
     @Override
@@ -187,7 +220,7 @@ public class CharacterImpl implements Character<Game, TurnNumber, Hex, Nation, N
 
     @Override
     public void setHostageOf(Nation hostageOf) {
-        this.hostageOf = hostageOf;
+        this.hostageOf = (NationImpl) hostageOf;
     }
 
     @Override
@@ -247,7 +280,7 @@ public class CharacterImpl implements Character<Game, TurnNumber, Hex, Nation, N
 
     @Override
     public void setNationTurn(NationTurn nationTurn) {
-        this.nationTurn = nationTurn;
+        this.nationTurn = (NationTurnImpl) nationTurn;
     }
 
     @Override
@@ -257,7 +290,7 @@ public class CharacterImpl implements Character<Game, TurnNumber, Hex, Nation, N
 
     @Override
     public void setInArmy(Army inArmy) {
-        this.inArmy = inArmy;
+        this.inArmy = (ArmyImpl) inArmy;
     }
 
     @Override
@@ -267,7 +300,7 @@ public class CharacterImpl implements Character<Game, TurnNumber, Hex, Nation, N
 
     @Override
     public void setPopulationCenter(PopulationCenter populationCenter) {
-        this.populationCenter = populationCenter;
+        this.populationCenter = (PopulationCenterImpl) populationCenter;
     }
 
     @Override
@@ -277,7 +310,7 @@ public class CharacterImpl implements Character<Game, TurnNumber, Hex, Nation, N
 
     @Override
     public void setHeldBy(Character heldBy) {
-        this.heldBy = heldBy;
+        this.heldBy = (CharacterImpl) heldBy;
     }
 
     @Override

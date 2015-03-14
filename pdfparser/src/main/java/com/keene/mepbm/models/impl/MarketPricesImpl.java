@@ -1,25 +1,49 @@
 package com.keene.mepbm.models.impl;
 
 import com.keene.mepbm.models.MarketPrices;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class MarketPricesImpl implements MarketPrices {
 
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
     private int marketPricesId;
+    @Column()
     private int leatherBuyPrice;
+    @Column()
     private int leatherSellPrice;
+    @Column()
     private int bronzeBuyPrice;
+    @Column()
     private int bronzeSellPrice;
+    @Column()
     private int steelBuyPrice;
+    @Column()
     private int steelSellPrice;
+    @Column()
     private int mithrilBuyPrice;
+    @Column()
     private int mithrilSellPrice;
+    @Column()
     private int foodBuyPrice;
+    @Column()
     private int foodSellPrice;
+    @Column()
     private int timberBuyPrice;
+    @Column()
     private int timberSellPrice;
+    @Column()
     private int mountsBuyPrice;
+    @Column()
     private int mountsSellPrice;
+    @Column()
     private int goldBuyPrice;
+    @Column()
     private int goldSellPrice;
 
     public MarketPricesImpl() {

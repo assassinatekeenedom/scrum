@@ -1,12 +1,23 @@
 package com.keene.mepbm.models.impl;
 
 import com.keene.mepbm.models.Player;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class PlayerImpl implements Player {
 
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
     private int playerId;
+    @Column()
     private String name;
+    @Column()
     private int accountNumber;
+    @Column()
     private String email;
 
     public PlayerImpl() {

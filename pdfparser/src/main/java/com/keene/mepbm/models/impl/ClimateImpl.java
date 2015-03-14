@@ -1,10 +1,19 @@
 package com.keene.mepbm.models.impl;
 
 import com.keene.mepbm.models.Climate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class ClimateImpl implements Climate {
 
-    private int climateId;
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
+    private int id;
+    @Column()
     private String name;
 
     public ClimateImpl() {
@@ -22,12 +31,12 @@ public class ClimateImpl implements Climate {
 
     @Override
     public int getClimateId() {
-        return climateId;
+        return id;
     }
 
     @Override
     public void setClimateId(int climateId) {
-        this.climateId = climateId;
+        this.id = climateId;
     }
 
     @Override

@@ -3,13 +3,25 @@ package com.keene.mepbm.models.impl;
 import com.keene.mepbm.models.Climate;
 import com.keene.mepbm.models.Hex;
 import com.keene.mepbm.models.Terrain;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
 public class HexImpl implements Hex<Terrain, Climate> {
 
-    private int hexId;
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
+    private int id;
+    @Column()
     private int hex;
-    private Terrain terrain;
-    private Climate climate;
+    @OneToOne
+    private TerrainImpl terrain;
+    @OneToOne
+    private ClimateImpl climate;
 
     public HexImpl() {
     }
@@ -21,7 +33,7 @@ public class HexImpl implements Hex<Terrain, Climate> {
 
     @Override
     public void setClimate(Climate climate) {
-        this.climate = climate;
+        this.climate = (ClimateImpl) climate;
     }
 
     @Override
@@ -36,12 +48,12 @@ public class HexImpl implements Hex<Terrain, Climate> {
 
     @Override
     public int getHexId() {
-        return hexId;
+        return id;
     }
 
     @Override
     public void setHexId(int hexId) {
-        this.hexId = hexId;
+        this.id = hexId;
     }
 
     @Override
@@ -51,7 +63,7 @@ public class HexImpl implements Hex<Terrain, Climate> {
 
     @Override
     public void setTerrain(Terrain terrain) {
-        this.terrain = terrain;
+        this.terrain = (TerrainImpl) terrain;
     }
 
     @Override

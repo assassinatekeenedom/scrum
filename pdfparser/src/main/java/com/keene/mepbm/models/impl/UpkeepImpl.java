@@ -1,17 +1,33 @@
 package com.keene.mepbm.models.impl;
 
 import com.keene.mepbm.models.Upkeep;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class UpkeepImpl implements Upkeep {
 
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
     private int upkeepId;
+    @Column()
     private int armiesAndNavies;
+    @Column()
     private int popCenters;
+    @Column()
     private int characters;
+    @Column()
     private int totalUpkeep;
+    @Column()
     private int grossGold;
+    @Column()
     private int netGold;
+    @Column()
     private int reserves;
+    @Column()
     private int taxRate;
 
     public UpkeepImpl() {

@@ -3,13 +3,25 @@ package com.keene.mepbm.models.impl;
 import com.keene.mepbm.models.Game;
 import com.keene.mepbm.models.Season;
 import com.keene.mepbm.models.TurnNumber;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
 public class TurnNumberImpl implements TurnNumber<Game, Season> {
 
-    private int turnNumberId;
+    @Id
+    @GeneratedValue
+    @Column(unique = true)
+    private int id;
+    @Column()
     private int number;
-    private Season season;
-    private Game game;
+    @OneToOne
+    private SeasonImpl season;
+    @OneToOne
+    private GameImpl game;
 
     public TurnNumberImpl() {
     }
@@ -26,12 +38,12 @@ public class TurnNumberImpl implements TurnNumber<Game, Season> {
 
     @Override
     public int getTurnNumberId() {
-        return turnNumberId;
+        return id;
     }
 
     @Override
     public void setTurnNumberId(int turnNumberId) {
-        this.turnNumberId = turnNumberId;
+        this.id = turnNumberId;
     }
 
     @Override
@@ -41,7 +53,7 @@ public class TurnNumberImpl implements TurnNumber<Game, Season> {
 
     @Override
     public void setSeason(Season season) {
-        this.season = season;
+        this.season = (SeasonImpl) season;
     }
 
     @Override
@@ -51,7 +63,7 @@ public class TurnNumberImpl implements TurnNumber<Game, Season> {
 
     @Override
     public void setGame(Game game) {
-        this.game = game;
+        this.game = (GameImpl) game;
     }
 
     @Override
