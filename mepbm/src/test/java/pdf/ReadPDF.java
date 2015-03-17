@@ -18,11 +18,12 @@ public class ReadPDF {
 //    private static String INPUTFILE = "C:\\selenium\\game\\game143\\Turn00\\g143n03t000";
 //    private static String INPUTFILE = "C:\\selenium\\game\\game143\\Turn00\\g143n04t000";
     private static String INPUTFILE = "C:\\selenium\\game\\game143\\Turn00\\g143n05t000.pdf";
+    private static String DESTINATION = "C:\\selenium\\mepbm\\www\\";
 //    private static String INPUTFILE = "C:\\selenium\\game\\game143\\Turn00\\g143n06t000";
 
     public ReadPDF() {
     }
-    
+
     @Test
     public void testPrintPDF() {
         try {
@@ -38,7 +39,7 @@ public class ReadPDF {
             System.out.println(ex);
         }
     }
-    
+
     @Test
     public void testPDFtoImage() {
         try {
@@ -48,7 +49,7 @@ public class ReadPDF {
             for (PDPage pdPage : pdPages) {
                 ++page;
                 BufferedImage bim = pdPage.convertToImage(BufferedImage.TYPE_INT_RGB, 300);
-                ImageIOUtil.writeImage(bim, "png", new FileOutputStream(new File("C:\\selenium\\golden\\target\\www\\" + INPUTFILE.substring(INPUTFILE.lastIndexOf("\\"), INPUTFILE.lastIndexOf(".pdf")) + "-" + page + ".png")), page);
+                ImageIOUtil.writeImage(bim, "png", new FileOutputStream(new File(DESTINATION + INPUTFILE.substring(INPUTFILE.lastIndexOf("\\"), INPUTFILE.lastIndexOf(".pdf")) + "-" + page + ".png")), page);
             }
             document.close();
         } catch (IOException ex) {
