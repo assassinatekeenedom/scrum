@@ -23,11 +23,7 @@
     }, type = "PNG_TO_BASE_64", img = document.createEvent("Event");
     img.initEvent(type, true, true);
     PNG_TO_BASE_64 = function(game, nation, turn, page) {
-        var convert = 'http://localhost/mepbm/'
-        convert += 'g' + game;
-        convert += 'n' + nation;
-        convert += 't' + turn;
-        convert += '-' + page + '.png';
+        var convert = 'http://localhost/mepbm/' + 'g' + game + 'n' + nation + 't' + turn + '-' + page + '.png';
         console.warn("loading: " + convert);
         convertImgToBase64URL(convert, refresh, true);
     };

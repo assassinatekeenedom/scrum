@@ -5,12 +5,12 @@
     var type = "PNG_TO_BASE_64";
     var images = [];
     document.addEventListener(type, function(img) {
-        console.log(img);
         var html = document.createElement("img");
         html.src = img.src;
         images.unshift(html);
         document.body.appendChild(html);
-        console.log(images);
+        img.imgages = images;
+        console.log(img);
     }, true);
 
     PNG_TO_BASE_64('143', '05', '000', '1');
