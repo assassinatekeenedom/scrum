@@ -1,7 +1,6 @@
 <html>
     <head>
         <title>ME-PBM Client</title>
-        <script type="text/javascript" src="js/script.js"></script>
         <script type="text/javascript">
             /**
              * Convert an image 
@@ -26,9 +25,16 @@
                 };
                 img.src = url;
             };
-            convertImgToBase64URL('http://localhost/g143n05t000.pdf-1.png', function(base64Img) {
-                console.log("File to base64 img: " + base64Img);
+            var img = document.createEvent("Event");
+            img.initEvent("PNG_TO_BASE_64", true, true);
+            document.addEventListener(img.type, function(img) {
+                console.log(img);
+            }, true);
+            convertImgToBase64URL('http://localhost/g143n05t000-1.png', function(base64Img) {
+                img.src = base64Img;
+                document.dispatchEvent(img);
             });
+
         </script>
     </head>
     <body></body>
