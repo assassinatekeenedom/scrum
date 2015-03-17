@@ -7,16 +7,8 @@
     document.addEventListener(type, function(img) {
         var html = document.createElement("img");
         html.src = img.src;
+        html.className = type;
         images.unshift(html);
-        document.body.appendChild(html);
-        img.imgages = images;
-        console.log(img);
+        img.images = images;
     }, true);
-
-    PNG_TO_BASE_64('143', '05', '000', '1');
-    PNG_TO_BASE_64('143', '05', '000', '2');
-    PNG_TO_BASE_64('143', '05', '000', '3');
-    PNG_TO_BASE_64('143', '05', '000', '4');
-    PNG_TO_BASE_64('143', '05', '000', '5');
-    PNG_TO_BASE_64('143', '05', '000', '6');
 })();
