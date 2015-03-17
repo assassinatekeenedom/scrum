@@ -7,6 +7,8 @@
         console.log(img);
         var shrink = img.images[0];
         document.body.appendChild(shrink);
+        document.body.style.position = "static";
+        document.body.style.overflow = "hidden";
         var x = shrink.offsetWidth, y = shrink.offsetHeight;
         var dx = shrink.offsetWidth / window.innerWidth, dy = shrink.offsetHeight / window.innerHeight;
         var refresh = function() {
