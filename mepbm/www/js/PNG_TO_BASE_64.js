@@ -2,14 +2,6 @@
  *  Anonymous Function Wrapper
  */
 (function() {
-    /**
-     * Convert an image 
-     * to a base64 url
-     * @param  {String}   url         
-     * @param  {Function} callback    
-     * @param  {String}   [outputFormat=image/png]           
-     */
-
     var convertImgToBase64URL = function(url, callback, outputFormat) {
         var canvas = document.createElement('CANVAS'),
                 ctx = canvas.getContext('2d'),
@@ -30,7 +22,7 @@
         document.dispatchEvent(img);
     }, type = "PNG_TO_BASE_64", img = document.createEvent("Event");
     img.initEvent(type, true, true);
-    mepbm = function(game, nation, turn, page) {
+    PNG_TO_BASE_64 = function(game, nation, turn, page) {
         var convert = 'http://localhost/mepbm/'
         convert += 'g' + game;
         convert += 'n' + nation;
@@ -39,5 +31,4 @@
         console.warn("loading: " + convert);
         convertImgToBase64URL(convert, refresh, true);
     };
-    mepbm('143', '05', '000', '1');
 })();
