@@ -30,5 +30,6 @@
     PNG_TO_BASE_64 = function(src) {
         console.warn("loading: " + src);
         convertImgToBase64URL(src, refresh, true);
+        return src;
     };
 })();

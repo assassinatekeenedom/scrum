@@ -2,8 +2,7 @@
  *  Anonymous Function Wrapper
  */
 (function() {
-    var type = "PNG_TO_BASE_64";
-    document.addEventListener(type, function(img) {
+    document.addEventListener("PNG_TO_BASE_64", function(img) {
         console.log(img);
         var shrink = img.images[0];
         document.body.appendChild(shrink);
@@ -22,9 +21,4 @@
         shrink.width = parseInt(x / dx);
         shrink.height = parseInt(y / dy);
     }, true);
-
-    var builder = function(game, nation, turn, page) {
-        return 'http://localhost/mepbm/' + 'g' + game + 'n' + nation + 't' + turn + '-' + page + '.png';
-    }
-    PNG_TO_BASE_64(builder('143', '05', '000', '8'));
 })();
