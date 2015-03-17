@@ -9,6 +9,7 @@
     <name>Nate</name>    
     <modules>
         <module>pdfparser</module>
+        <module>mepbm</module>
         <module>www</module>
         <module>mvc</module>
         <module>gold</module>

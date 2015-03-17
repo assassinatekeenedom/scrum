@@ -32,56 +32,56 @@ public final class NationMeta extends TurnPDFSection {
 
     @Override
     public final void process() {
-        this.setGameInfo();
-        this.setSpecialService();
-        this.setVictoryPoints();
-        this.setVictoryConditions();
-        this.setTotalVictoryPoints();
-        this.setSNAs();
-        this.setNationNumber();
-        this.setActiveTurn();
-        this.setPlayerInfo();
-        this.setAllegiance();
-        this.setSeason();
-        this.getData().nextToken();
+        setGameInfo();
+        setSpecialService();
+        setVictoryPoints();
+        setVictoryConditions();
+        setTotalVictoryPoints();
+        setSNAs();
+        setNationNumber();
+        setActiveTurn();
+        setPlayerInfo();
+        setAllegiance();
+        setSeason();
+        getData().nextToken();
 
-        System.out.println(this.getData().getActiveNation().getGame());
+        System.out.println(getData().getActiveNation().getGame());
     }
 
     /**
-     * Add a Game to the MEthis.getData().
+     * Add a Game to the MEgetData().
      * @param data
-     * @param this.getData().getPersistence()
+     * @param getData().getPersistence()
      */
     private void setGameInfo() {
-        this.getData().nextToken();
-        this.getData().nextToken();
-        this.getData().nextToken();
-        String module = this.getData().getToken();
-        this.getData().nextToken();
-        int gameNumber = this.getData().isolateRightColumnNumber(this.getData().getToken(), "GAME #");
-        this.getData().nextToken();
+        getData().nextToken();
+        getData().nextToken();
+        getData().nextToken();
+        String module = getData().getToken();
+        getData().nextToken();
+        int gameNumber = getData().isolateRightColumnNumber(getData().getToken(), "GAME #");
+        getData().nextToken();
         Game game = new GameImpl();
         game.setModule(module);
         game.setNumber(gameNumber);
-        this.getData().setActiveGame(game);
+        getData().setActiveGame(game);
 
         String name = null;
 
-        if (this.getData().getToken().contains("Eliminated")) {
+        if (getData().getToken().contains("Eliminated")) {
             eliminated = true;
-            name = this.getData().getToken().substring(this.getData().getToken().indexOf("--- ") + "--- ".length(), this.getData().getToken().indexOf(" Eliminated"));
-        } else if (this.getData().getToken().contains("Won")) {
+            name = getData().getToken().substring(getData().getToken().indexOf("--- ") + "--- ".length(), getData().getToken().indexOf(" Eliminated"));
+        } else if (getData().getToken().contains("Won")) {
             winner = true;
         } else {
-            name = this.getData().getToken();
+            name = getData().getToken();
         }
         Nation nation = new NationImpl();
         nation.setName(name);
         nation.setGame(game);
-        this.getData().setActiveNation(nation);
-        this.getData().getActiveNation().setGame(this.getData().getActiveGame());
-        this.getData().nextToken();
+        getData().setActiveNation(nation);
+        getData().getActiveNation().setGame(getData().getActiveGame());
+        getData().nextToken();
     }
 
     /**
@@ -89,9 +89,9 @@ public final class NationMeta extends TurnPDFSection {
      * @param data
      */
     private void setSpecialService() {
-        if (this.getData().getToken().contains("Special Service Turn")) {
+        if (getData().getToken().contains("Special Service Turn")) {
             specialService = true;
-            this.getData().nextToken();
+            getData().nextToken();
         }
     }
 
@@ -101,28 +101,28 @@ public final class NationMeta extends TurnPDFSection {
      */
     private void setVictoryPoints() {
 
-        if (this.getData().getToken().contains(" Victory Points")) {
-            while (this.getData().getToken().contains(" Victory Points")) {
-                if (this.getData().getToken().contains("Army")) {
-                    this.getData().nextToken();
-                    vps.setArmy(Integer.parseInt(this.getData().getToken()));
-                } else if (this.getData().getToken().contains("Character")) {
-                    this.getData().nextToken();
-                    vps.setCharacter(Integer.parseInt(this.getData().getToken()));
-                } else if (this.getData().getToken().contains("Wealth")) {
-                    this.getData().nextToken();
-                    vps.setCharacter(Integer.parseInt(this.getData().getToken()));
-                } else if (this.getData().getToken().contains("Population Center")) {
-                    this.getData().nextToken();
-                    vps.setPopulationCenter(Integer.parseInt(this.getData().getToken()));
-                } else if (this.getData().getToken().contains("Individual")) {
-                    this.getData().nextToken();
-                    vps.setIndividual(Integer.parseInt(this.getData().getToken()));
+        if (getData().getToken().contains(" Victory Points")) {
+            while (getData().getToken().contains(" Victory Points")) {
+                if (getData().getToken().contains("Army")) {
+                    getData().nextToken();
+                    vps.setArmy(Integer.parseInt(getData().getToken()));
+                } else if (getData().getToken().contains("Character")) {
+                    getData().nextToken();
+                    vps.setCharacter(Integer.parseInt(getData().getToken()));
+                } else if (getData().getToken().contains("Wealth")) {
+                    getData().nextToken();
+                    vps.setCharacter(Integer.parseInt(getData().getToken()));
+                } else if (getData().getToken().contains("Population Center")) {
+                    getData().nextToken();
+                    vps.setPopulationCenter(Integer.parseInt(getData().getToken()));
+                } else if (getData().getToken().contains("Individual")) {
+                    getData().nextToken();
+                    vps.setIndividual(Integer.parseInt(getData().getToken()));
                 }
-                this.getData().nextToken();
+                getData().nextToken();
             }
         }
-        vps.setNation(this.getData().getActiveNation());
+        vps.setNation(getData().getActiveNation());
     }
 
     /**
@@ -130,15 +130,15 @@ public final class NationMeta extends TurnPDFSection {
      * @param data
      */
     private void setVictoryConditions() {
-        while (!this.getData().getToken().contains("Special Nation Abilities")) {
-            if (this.getData().getToken().contains("To ")) {
-                String description = this.getData().getToken();
-//                this.getData().getPersistence().getVcDAO().load(description, this.getData().getActiveNation(), this.getData().getActiveGame());
+        while (!getData().getToken().contains("Special Nation Abilities")) {
+            if (getData().getToken().contains("To ")) {
+                String description = getData().getToken();
+//                getData().getPersistence().getVcDAO().load(description, getData().getActiveNation(), getData().getActiveGame());
             }
-            this.getData().nextToken();
-            if (this.getData().getToken().contains("Top")) {
-                this.getData().nextToken();
-                this.getData().nextToken();
+            getData().nextToken();
+            if (getData().getToken().contains("Top")) {
+                getData().nextToken();
+                getData().nextToken();
                 break;
             }
         }
@@ -149,32 +149,32 @@ public final class NationMeta extends TurnPDFSection {
      * @param data
      */
     private void setTotalVictoryPoints() {
-        if (this.getData().getToken().contains("Victory points      :")) {
-            totalVictoryPoints = this.getData().isolateRightColumnNumber(this.getData().getToken(), "Victory points      :");
-        } else if (this.getData().getToken().contains("Victory points")) {
-            totalVictoryPoints = this.getData().isolateRightColumnNumber(this.getData().getToken(), "Final Victory Points:");
+        if (getData().getToken().contains("Victory points      :")) {
+            totalVictoryPoints = getData().isolateRightColumnNumber(getData().getToken(), "Victory points      :");
+        } else if (getData().getToken().contains("Victory points")) {
+            totalVictoryPoints = getData().isolateRightColumnNumber(getData().getToken(), "Final Victory Points:");
         }
     }
 
     /**
      * Add SNAs to the ActiveNation.
      * @param data
-     * @param this.getData().getPersistence()
+     * @param getData().getPersistence()
      */
     private void setSNAs() {
-        if (this.getData().getToken().contains("Special Nation Abilities")) {
-            this.getData().nextToken();
-            while (!this.getData().getToken().contains("Game #          :")) {
-                int number = Integer.parseInt(this.getData().getToken().substring(this.getData().getToken().indexOf("#") + 1, this.getData().getToken().indexOf("#") + 3));
-                String description = this.getData().getToken().substring("          #XX ".length(), this.getData().getToken().length());
+        if (getData().getToken().contains("Special Nation Abilities")) {
+            getData().nextToken();
+            while (!getData().getToken().contains("Game #          :")) {
+                int number = Integer.parseInt(getData().getToken().substring(getData().getToken().indexOf("#") + 1, getData().getToken().indexOf("#") + 3));
+                String description = getData().getToken().substring("          #XX ".length(), getData().getToken().length());
                 SNA sna = new SNAImpl();
                 sna.setNumber(number);
                 sna.setDescription(description);
-                sna.setNation(this.getData().getActiveNation());
-                this.getData().nextToken();
+                sna.setNation(getData().getActiveNation());
+                getData().nextToken();
             }
         }
-        this.getData().nextToken();
+        getData().nextToken();
     }
 
     /**
@@ -182,88 +182,88 @@ public final class NationMeta extends TurnPDFSection {
      * @param data
      */
     private void setNationNumber() {
-        this.getData().getActiveNation().setNumber(this.getData().isolateRightColumnNumber(this.getData().getToken(), "Player #        :"));
-        this.getData().nextToken();
+        getData().getActiveNation().setNumber(getData().isolateRightColumnNumber(getData().getToken(), "Player #        :"));
+        getData().nextToken();
     }
 
     /**
      * Add the TurnNumber to the ActiveNationTurn.
      * @param data
-     * @param this.getData().getPersistence()
+     * @param getData().getPersistence()
      */
     private void setActiveTurn() {
-        int turn = this.getData().isolateRightColumnNumber(this.getData().getToken(), "Turn #          :");
+        int turn = getData().isolateRightColumnNumber(getData().getToken(), "Turn #          :");
         TurnNumber number = new TurnNumberImpl();
-        number.setGame(this.getData().getActiveGame());
+        number.setGame(getData().getActiveGame());
         number.setNumber(turn);
-        this.getData().nextToken();
-        this.getData().nextToken();
-        this.getData().nextToken();
+        getData().nextToken();
+        getData().nextToken();
+        getData().nextToken();
 
         NationTurn nationTurn = new NationTurnImpl();
-        nationTurn.setNation(this.getData().getActiveNation());
+        nationTurn.setNation(getData().getActiveNation());
         nationTurn.setTurnNumber(number);
-        this.getData().setActiveNationTurn(nationTurn);
+        getData().setActiveNationTurn(nationTurn);
         nationTurn.setEliminated(eliminated);
         nationTurn.setWinner(winner);
         nationTurn.setSpecialService(specialService);
         nationTurn.setTotalVictoryPoints(totalVictoryPoints);
 
-        vps.setNationTurn(this.getData().getActiveNationTurn());
-        this.getData().getActiveNationTurn().setVictoryPoints(vps);
+        vps.setNationTurn(getData().getActiveNationTurn());
+        getData().getActiveNationTurn().setVictoryPoints(vps);
 
-        this.getData().getActiveNationTurn().setNation(this.getData().getActiveNation());
-        this.getData().getActiveNationTurn().setGame(this.getData().getActiveGame());
+        getData().getActiveNationTurn().setNation(getData().getActiveNation());
+        getData().getActiveNationTurn().setGame(getData().getActiveGame());
     }
 
     /**
      * Add Player Info to the ActiveNation
      * @param data
-     * @param this.getData().getPersistence()
+     * @param getData().getPersistence()
      */
     private void setPlayerInfo() {
-        String name = this.getData().getToken().substring(0, this.getData().getToken().lastIndexOf(" "));
-        int accountNumber = this.getData().isolateRightColumnNumber(this.getData().getToken(), name);
+        String name = getData().getToken().substring(0, getData().getToken().lastIndexOf(" "));
+        int accountNumber = getData().isolateRightColumnNumber(getData().getToken(), name);
         Player player = new PlayerImpl();
         player.setAccountNumber(accountNumber);
         player.setName(name);
-        this.getData().getActiveNation().setPlayer(player);
-        this.getData().nextToken();
-        this.getData().nextToken();
-        this.getData().nextToken();
-        this.getData().nextToken();
-        this.getData().nextToken();
-        this.getData().nextToken();
-        this.getData().nextToken();
-        this.getData().nextToken();
+        getData().getActiveNation().setPlayer(player);
+        getData().nextToken();
+        getData().nextToken();
+        getData().nextToken();
+        getData().nextToken();
+        getData().nextToken();
+        getData().nextToken();
+        getData().nextToken();
+        getData().nextToken();
     }
 
     /**
      *
      * @param data
-     * @param this.getData().getPersistence()
+     * @param getData().getPersistence()
      */
     private void setAllegiance() {
         Allegiance allegiance = new AllegianceImpl();
-        if (this.getData().getToken().indexOf("Dark") > 0) {
+        if (getData().getToken().indexOf("Dark") > 0) {
             allegiance.setAllegianceName("Dark Servant");
-        } else if (this.getData().getToken().indexOf("Free") > 0) {
+        } else if (getData().getToken().indexOf("Free") > 0) {
             allegiance.setAllegianceName("Free People");
         } else {
             allegiance.setAllegianceName("Neutral");
         }
-        this.getData().getActiveNationTurn().setAllegiance(allegiance);
-        this.getData().nextToken();
+        getData().getActiveNationTurn().setAllegiance(allegiance);
+        getData().nextToken();
     }
 
     /**
      *
      * @param data
-     * @param this.getData().getPersistence()
+     * @param getData().getPersistence()
      */
     private void setSeason() {
         Season season = new SeasonImpl();
-        season.setName(this.getData().isolateRightColumnString(this.getData().getToken(), "Season :"));
-        this.getData().getActiveNationTurn().getTurnNumber().setSeason(season);
+        season.setName(getData().isolateRightColumnString(getData().getToken(), "Season :"));
+        getData().getActiveNationTurn().getTurnNumber().setSeason(season);
     }
 }
