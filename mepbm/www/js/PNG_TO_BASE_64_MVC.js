@@ -10,12 +10,10 @@
         var x = shrink.offsetWidth, y = shrink.offsetHeight;
         var dx = shrink.offsetWidth / window.innerWidth, dy = shrink.offsetHeight / window.innerHeight;
         var refresh = function() {
-            console.warn("refresh");
-            dx = shrink.offsetWidth / window.innerWidth, dy = shrink.offsetHeight / window.innerHeight;
+            dx = x / window.innerWidth, dy = y / window.innerHeight;
             document.body.removeChild(shrink);
             shrink.width = parseInt(x / dx);
             shrink.height = parseInt(y / dy);
-            console.warn(shrink);
             document.body.appendChild(shrink);
         };
         window.addEventListener("resize", refresh, true);
