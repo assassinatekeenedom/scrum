@@ -1,10 +1,16 @@
 package pdf;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.List;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.util.ImageIOUtil;
 import org.apache.pdfbox.util.PDFTextStripper;
 import org.testng.annotations.Test;
 
@@ -29,6 +35,23 @@ public class ReadPDF {
             stripper.writeText(pdf, out);
             out.flush();
             out.close();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Test
+    public void testPDFtoImage() {
+        try {
+            PDDocument document = PDDocument.loadNonSeq(new File(INPUTFILE), null);
+            List<PDPage> pdPages = document.getDocumentCatalog().getAllPages();
+            int page = 0;
+            for (PDPage pdPage : pdPages) {
+                ++page;
+                BufferedImage bim = pdPage.convertToImage(BufferedImage.TYPE_INT_RGB, 300);
+                ImageIOUtil.writeImage(bim, "png", new FileOutputStream(new File(INPUTFILE + "-" + page + ".png")), page);
+            }
+            document.close();
         } catch (IOException ex) {
             System.out.println(ex);
         }
