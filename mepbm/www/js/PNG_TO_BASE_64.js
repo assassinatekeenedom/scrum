@@ -9,6 +9,7 @@
      * @param  {Function} callback    
      * @param  {String}   [outputFormat=image/png]           
      */
+
     var convertImgToBase64URL = function(url, callback, outputFormat) {
         var canvas = document.createElement('CANVAS'),
                 ctx = canvas.getContext('2d'),
@@ -24,11 +25,19 @@
             canvas = null;
         };
         img.src = url;
-    };
-    var img = document.createEvent("Event");
-    img.initEvent("PNG_TO_BASE_64", true, true);
-    convertImgToBase64URL('http://localhost/mepbm/g143n05t000-1.png', function(base64Img) {
-        img.src = base64Img;
+    }, refresh = function(src) {
+        img.src = src;
         document.dispatchEvent(img);
-    });
+    }, type = "PNG_TO_BASE_64", img = document.createEvent("Event");
+    img.initEvent(type, true, true);
+    mepbm = function(game, nation, turn, page) {
+        var convert = 'http://localhost/mepbm/'
+        convert += 'g' + game;
+        convert += 'n' + nation;
+        convert += 't' + turn;
+        convert += '-' + page + '.png';
+        console.warn("loading: " + convert);
+        convertImgToBase64URL(convert, refresh, true);
+    };
+    mepbm('143', '05', '000', '1');
 })();
