@@ -12,6 +12,10 @@
     <name>ME-PBM</name>
     <dependencies>
         <dependency>
+            <groupId>assassin</groupId>
+            <artifactId>grow</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
         </dependency>
@@ -28,9 +32,12 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-grizzly2</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
-            <version>1.8.8</version>
         </dependency>
     </dependencies>
 </project>

@@ -1,4 +1,4 @@
-package pdf;
+package know;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
