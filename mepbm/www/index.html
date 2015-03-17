@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>ME-PBM Client</title>
+        <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript">
+            /**
+             * Convert an image 
+             * to a base64 url
+             * @param  {String}   url         
+             * @param  {Function} callback    
+             * @param  {String}   [outputFormat=image/png]           
+             */
+            var convertImgToBase64URL = function(url, callback, outputFormat) {
+                var canvas = document.createElement('CANVAS'),
+                        ctx = canvas.getContext('2d'),
+                        img = new Image;
+                img.crossOrigin = 'Anonymous';
+                img.onload = function() {
+                    var dataURL;
+                    canvas.height = img.height;
+                    canvas.width = img.width;
+                    ctx.drawImage(img, 0, 0);
+                    dataURL = canvas.toDataURL(outputFormat);
+                    callback(dataURL);
+                    canvas = null;
+                };
+                img.src = url;
+            };
+            convertImgToBase64URL('http://localhost/g143n05t000.pdf-1.png', function(base64Img) {
+                console.log("File to base64 img: " + base64Img);
+            });
+        </script>
+    </head>
+    <body></body>
+</html>

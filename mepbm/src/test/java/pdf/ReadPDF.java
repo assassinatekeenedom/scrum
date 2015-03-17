@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.List;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -23,7 +22,7 @@ public class ReadPDF {
 
     public ReadPDF() {
     }
-
+    
     @Test
     public void testPrintPDF() {
         try {
@@ -39,7 +38,7 @@ public class ReadPDF {
             System.out.println(ex);
         }
     }
-
+    
     @Test
     public void testPDFtoImage() {
         try {
@@ -49,7 +48,7 @@ public class ReadPDF {
             for (PDPage pdPage : pdPages) {
                 ++page;
                 BufferedImage bim = pdPage.convertToImage(BufferedImage.TYPE_INT_RGB, 300);
-                ImageIOUtil.writeImage(bim, "png", new FileOutputStream(new File(INPUTFILE + "-" + page + ".png")), page);
+                ImageIOUtil.writeImage(bim, "png", new FileOutputStream(new File("C:\\selenium\\golden\\target\\www\\" + INPUTFILE.substring(INPUTFILE.lastIndexOf("\\"), INPUTFILE.lastIndexOf(".pdf")) + "-" + page + ".png")), page);
             }
             document.close();
         } catch (IOException ex) {
