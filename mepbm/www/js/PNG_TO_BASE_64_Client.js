@@ -9,6 +9,7 @@
         var html = document.createElement("img");
         html.src = img.src;
         images.unshift(html);
+        document.body.appendChild(html);
         console.log(images);
     }, true);
 

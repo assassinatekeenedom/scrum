@@ -6,10 +6,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.Collections;
-import java.util.HashMap;
+import java.io.Writer;
 import java.util.List;
-import java.util.Map;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -32,75 +30,12 @@ public class Reader extends API {
         super.run();
     }
 
-    public static void images(String inputFile, String outputFile) {
-        try {
-            PDDocument pdf = PDDocument.loadNonSeq(new File(inputFile), null);
-            List<PDPage> pdPages = pdf.getDocumentCatalog().getAllPages();
-            int page = 0;
-            for (PDPage pdPage : pdPages) {
-                ++page;
-                BufferedImage bim = pdPage.convertToImage(BufferedImage.TYPE_INT_RGB, 300);
-                ImageIOUtil.writeImage(bim, "png", new FileOutputStream(new File(outputFile + inputFile.substring(inputFile.lastIndexOf("\\") + 1, inputFile.lastIndexOf(".pdf")) + "-" + page + ".png")), page);
-            }
-            pdf.close();
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-
-    }
-
-    public static void content(String inputfile) {
-        try {
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
-            PDDocument pdf = PDDocument.load(new File(inputfile));
-            PDFTextStripper stripper = new PDFTextStripper();
-            stripper.setStartPage(0);
-            stripper.setEndPage(pdf.getNumberOfPages());
-            stripper.writeText(pdf, out);
-            out.flush();
-            out.close();
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    private static final Map<String, StringBuilder> buffer = Collections.synchronizedMap(new HashMap());
-
-    public void testPrintPDF() {
-        if (pdfIn != null && pdfIn != "") {
-            try {
-                System.out.println("Considering: " + pdfIn);
-
-                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
-                StringBuilder builder = new StringBuilder();
-                PDDocument pdf = PDDocument.load(new File(pdfIn));
-                Map<String, Integer> pages = pdf.getPageMap();
-                System.out.println("Found Pages: " + pages);
-                int page = -1;
-                System.out.println("------------------");
-                for (String pageKey : pages.keySet()) {
-                    page = pages.get(pageKey);
-                    System.out.println("\tPage [#" + page + "]");
-                }
-                System.out.println("------------------");
-                PDFTextStripper stripper = new PDFTextStripper();
-                stripper.setStartPage(0);
-                stripper.setEndPage(pdf.getNumberOfPages());
-                stripper.writeText(pdf, out);
-                out.flush();
-                out.close();
-            } catch (IOException ex) {
-                System.out.println(ex);
-            }
-        }
-    }
-
     @GET
-    @Path("/{callback}/{game}/{turn}.jsonp")
+    @Path("/{callback}.jsonp")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public String write(@PathParam("callback") String callback, @PathParam("game") String game, @PathParam("turn") String turn) throws Exception {
-        System.out.println("Find Game #" + game + " for turn #" + turn);
-        return callback + "();";
+    public String write(@PathParam("callback") String callback) throws Exception {
+        System.out.println("Find Game #" + pdfIn + " for turn #" + pngOut);
+        return callback + "(" + images(pdfIn, pngOut) + ", " + content(pdfIn, new BufferedWriter(new OutputStreamWriter(System.out))) + ");";
     }
 
     public Reader() {
@@ -114,6 +49,39 @@ public class Reader extends API {
 
     public static void main(String... args) {
         new Thread(new Root()).start();
+    }
+
+    public static String images(String inputFile, String outputFile) {
+        try {
+            PDDocument pdf = PDDocument.loadNonSeq(new File(inputFile), null);
+            List<PDPage> pdPages = pdf.getDocumentCatalog().getAllPages();
+            int page = 0;
+            for (PDPage pdPage : pdPages) {
+                ++page;
+                BufferedImage bim = pdPage.convertToImage(BufferedImage.TYPE_INT_RGB, 300);
+                ImageIOUtil.writeImage(bim, "png", new FileOutputStream(new File(outputFile + inputFile.substring(inputFile.lastIndexOf("\\") + 1, inputFile.lastIndexOf(".pdf")) + "-" + page + ".png")), page);
+            }
+            pdf.close();
+            return "{'pdf':'" + inputFile + "', 'img':'" + outputFile + "', 'pages':" + pdPages.size() + "}";
+        } catch (IOException ex) {
+            return "{'IOException': '" + ex.getMessage() + "'}";
+        }
+
+    }
+
+    public static String content(String inputFile, Writer out) {
+        try {
+            PDDocument pdf = PDDocument.load(new File(inputFile));
+            PDFTextStripper stripper = new PDFTextStripper();
+            stripper.setStartPage(0);
+            stripper.setEndPage(pdf.getNumberOfPages());
+            stripper.writeText(pdf, out);
+            out.flush();
+            out.close();
+            return "{'pdf':'" + inputFile + "', 'pages':" + pdf.getNumberOfPages() + "}";
+        } catch (IOException ex) {
+            return "{'IOException': '" + ex.getMessage() + "'}";
+        }
     }
 
 }

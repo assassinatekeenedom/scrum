@@ -1,5 +1,7 @@
 package know;
 
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
 import org.testng.annotations.Test;
 
 public class ReadPDF {
@@ -14,11 +16,11 @@ public class ReadPDF {
 
     @Test
     public void testPrintPDF() {
-        Reader.content(TARGET + pdfA);
+        System.out.println(Reader.content(TARGET + pdfA, new BufferedWriter(new OutputStreamWriter(System.out))));
     }
 
     @Test
     public void testPDFtoImage() {
-        Reader.images(TARGET + pdfA, DESTINATION);
+        System.out.println(Reader.images(TARGET + pdfA, DESTINATION));
     }
 }
