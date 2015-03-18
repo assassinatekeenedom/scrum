@@ -6,7 +6,7 @@
     <groupId>assassin</groupId>
     <artifactId>nate</artifactId>
     <version>0.0.0.0</version>
-    <name>Nate</name>    
+    <name>EE Application Owner</name>
     <modules>
         <module>pdfparser</module>
         <module>mepbm</module>

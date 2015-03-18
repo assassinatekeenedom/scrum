@@ -1,8 +1,6 @@
 package know;
 
-import know.IO;
 import java.io.File;
-import know.Virtual;
 
 public enum JS implements Virtual {
 

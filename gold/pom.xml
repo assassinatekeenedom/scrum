@@ -9,7 +9,7 @@
     </parent>
     <artifactId>grow</artifactId>
     <version>0.0.0.3</version>
-    <name>Grow</name>
+    <name>REST Provider</name>
     <dependencies>
         <dependency>
             <groupId>assassin</groupId>
