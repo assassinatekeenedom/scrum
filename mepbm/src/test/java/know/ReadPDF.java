@@ -27,11 +27,6 @@ public class ReadPDF {
     }
 
     @Test
-    public void testPrintPDF() {
-        System.out.println(Reader.content(pdfA, new BufferedWriter(new OutputStreamWriter(System.out))));
-    }
-
-    @Test
     public void testPDFtoImage() throws IOException {
         System.out.println(Reader.images(pdfA, DESTINATION));
         Logger custom = LogManager.getLogger("custom-name");
