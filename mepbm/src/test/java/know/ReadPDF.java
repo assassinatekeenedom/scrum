@@ -1,8 +1,9 @@
 package know;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,6 +29,11 @@ public class ReadPDF {
 
     @Test
     public void testPDFtoImage() throws IOException {
+        URL url = new URL("http://keenedom.com/mepbm-pdf/fourthAge/game143/Turn00/g143n05t000.pdf");
+        URLConnection now = url.openConnection();
+        now.connect();
+
+        System.out.println("Input-Stream: " + now.getContent());
         System.out.println(Reader.images(pdfA, DESTINATION));
         Logger custom = LogManager.getLogger("custom-name");
         Marker mark = MarkerManager.getMarker("custom-mark");
