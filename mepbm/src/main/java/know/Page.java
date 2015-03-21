@@ -27,9 +27,6 @@ public class Page implements Runnable {
         this.inputFile = inputFile;
     }
 
-    /**
-     *
-     */
     @Override
     public void run() {
         try {
