@@ -1,9 +1,7 @@
 package know;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
@@ -16,7 +14,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.util.ImageIOUtil;
 import org.apache.pdfbox.util.PDFTextStripper;
 
 @Path("")
@@ -51,22 +48,16 @@ public class Reader extends API {
         new Thread(new Root()).start();
     }
 
-    public static String images(String inputFile, String outputFile) {
-        try {
-            PDDocument pdf = PDDocument.loadNonSeq(new File(inputFile), null);
-            List<PDPage> pdPages = pdf.getDocumentCatalog().getAllPages();
+    public static String images(String inputFile, String outputFile) throws IOException {
+        List<PDPage> pdPages;
+        try (PDDocument pdf = PDDocument.loadNonSeq(new File(inputFile), null)) {
+            pdPages = pdf.getDocumentCatalog().getAllPages();
             int page = 0;
             for (PDPage pdPage : pdPages) {
-                ++page;
-                BufferedImage bim = pdPage.convertToImage(BufferedImage.TYPE_INT_RGB, 300);
-                ImageIOUtil.writeImage(bim, "png", new FileOutputStream(new File(outputFile + inputFile.substring(inputFile.lastIndexOf("\\") + 1, inputFile.lastIndexOf(".pdf")) + "-" + page + ".png")), page);
+                new Thread(new Page(new File(outputFile + inputFile.substring(inputFile.lastIndexOf("\\") + 1, inputFile.lastIndexOf(".pdf")) + "-" + ++page + ".png"), pdPage, page)).start();
             }
-            pdf.close();
-            return "{'pdf':'" + inputFile + "', 'img':'" + outputFile + "', 'pages':" + pdPages.size() + "}";
-        } catch (IOException ex) {
-            return "{'IOException': '" + ex.getMessage() + "'}";
         }
-
+        return "{'pdf':'" + inputFile + "', 'img':'" + outputFile + "', 'pages':" + pdPages.size() + "}";
     }
 
     public static String content(String inputFile, Writer out) {
