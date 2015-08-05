@@ -17,6 +17,7 @@ import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.AppenderRef;
 import org.apache.logging.log4j.core.config.LoggerConfig;
+import org.apache.pdfbox.util.PDFTextStripper;
 import org.testng.annotations.Test;
 
 public class ReadPDF {
@@ -29,39 +30,15 @@ public class ReadPDF {
 
     @Test
     public void testPDFtoImage() throws IOException {
-        URL url = new URL("http://keenedom.com/mepbm-pdf/fourthAge/game143/Turn00/g143n05t000.pdf");
-        URLConnection now = url.openConnection();
-        now.connect();
-
-        System.out.println("Input-Stream: " + now.getContent());
-        System.out.println(Reader.images(pdfA, DESTINATION));
-        Logger custom = LogManager.getLogger("custom-name");
-        Marker mark = MarkerManager.getMarker("custom-mark");
-        LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
-        Configuration config = ctx.getConfiguration();
-        Layout layout = PatternLayout.createLayout(PatternLayout.SIMPLE_CONVERSION_PATTERN, config, null, null, true, true, null, null);
-        Appender appender = FileAppender.createAppender("target/test.log", "false", "false", "File", "true", "false", "false", "4000", layout, null, "false", null, config);
-        appender.start();
-        config.addAppender(appender);
-        AppenderRef ref = AppenderRef.createAppenderRef("File", null, null);
-        AppenderRef[] refs = new AppenderRef[]{ref};
-        LoggerConfig loggerConfig = LoggerConfig.createLogger("false", Level.INFO, "org.apache.logging.log4j", "true", refs, null, config, null);
-        loggerConfig.addAppender(appender, null, null);
-        config.addLogger("org.apache.logging.log4j", loggerConfig);
-        ctx.updateLoggers();
-        /**
-         *
-         * //communication aspect
-         *
-         * Message message = new ParameterizedMessage(pattern,params,Throwable);
-         *
-         * //communication role
-         *
-         *
-         * //logging at event
-         *
-         * custom.log(Level, Marker, Message, Throwable);
-         *
-         */
+        PDFTextStripper extract = new PDFTextStripper();
+        extract.setStartPage(0);
+        extract.setEndPage(pdf.getNumberOfPages());
+        System.out.println("--------------------------");
+        System.out.println("--------------------------");
+        System.out.println("--------------------------");
+        System.out.println(extract.getText(pdf));
+        System.out.println("--------------------------");
+        System.out.println("--------------------------");
+        System.out.println("--------------------------");
     }
 }
