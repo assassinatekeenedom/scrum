@@ -33,6 +33,7 @@ public class API extends Application implements Runnable {
             HttpContext context = server.createContext(UriBuilder.fromUri(origin).port(server.getAddress().getPort()).build().getPath());
             context.setHandler(RuntimeDelegate.getInstance().createEndpoint(this, HttpHandler.class));
             server.start();
+            System.out.println("Server Started");
         } catch (Exception ex) {
         }
     }

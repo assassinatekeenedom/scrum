@@ -14,25 +14,30 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.util.PDFTextStripper;
 
 @Path("")
-public class Reader extends API {
+public class TurnReader extends API {
+
+    private static final String pdfA = "C:\\selenium\\game\\game143\\Turn00\\g143n05t000.pdf";
 
     @Override
     public void run() {
         setProcess(getClass().getCanonicalName());
         setOrigin("http://localhost/");
-        setPort(13377);
+        setPort(13370);
+        System.out.println("-----");
         super.run();
+        System.out.println("-----");
     }
 
     @GET
-    @Path("/{callback}.jsonp")
+    @Path("/test.js")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public String write(@PathParam("callback") String callback) throws Exception {
-        System.out.println("Find Game #" + pdfIn + " for turn #" + pngOut);
-        return callback + "(" + images(pdfIn, pngOut) + ", " + images(pdfIn, pngOut) + ");";
+    public String write() throws Exception {
+        System.out.println("HELLO WORLD!");
+//        System.out.println("Callback (JSONP)" + callback + " of Game #" + game + " for turn #" + turn+ " for nation #" + nation);
+        return  "jsonp(\"" + NationTurn.create(pdfA) + "\");";
     }
 
-    public Reader() {
+    public TurnReader() {
     }
 
     @QueryParam("pdf")
@@ -42,7 +47,7 @@ public class Reader extends API {
     private String pngOut;
 
     public static void main(String... args) {
-        new Thread(new Root()).start();
+        new Thread(new TurnReader()).start();
     }
 
     public static String text(String inputFile, String outputFile) throws IOException {
