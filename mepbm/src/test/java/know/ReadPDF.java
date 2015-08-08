@@ -1,10 +1,6 @@
 package know;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.util.PDFTextStripper;
+import java.util.List;
 import org.testng.annotations.Test;
 
 public class ReadPDF {
@@ -16,7 +12,9 @@ public class ReadPDF {
     }
 
     @Test
-    public void testPDFtoImage() throws Exception {
-        System.out.println(NationTurn.create(pdfA));
+    public void testNationTurn() throws Exception {
+        NationTurn turn = NationTurn.create(pdfA);
+        List<Character> toons = new CharacterSection(turn).call();
+        System.out.println(toons);
     }
 }

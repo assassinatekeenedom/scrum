@@ -2,25 +2,41 @@ package know;
 
 import java.io.File;
 import java.util.concurrent.Callable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
 public class NationTurn implements Callable<String>, Runnable {
 
-    private final String pdf;
+    private String pdf;
+    private String content;
+
+    public NationTurn() {
+    }
 
     public NationTurn(String pdf) {
         this.pdf = pdf;
     }
 
-    public static String create(String path) {
-        try {
-            return new NationTurn(path).call();
-        } catch (Exception ex) {
-            return "ROOT failure of NationTurn created";
-        }
+    public String getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public static NationTurn create(String pdf) {
+        NationTurn turn = new NationTurn(pdf);
+        turn.run();
+        return turn;
     }
 
     @Override
@@ -35,10 +51,9 @@ public class NationTurn implements Callable<String>, Runnable {
     @Override
     public void run() {
         try {
-            call();
+            content = call();
         } catch (Exception ex) {
             ex.printStackTrace();
-            System.out.println("FAILED TO run");
         }
     }
 }

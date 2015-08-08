@@ -33,8 +33,9 @@ public class TurnReader extends API {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public String write() throws Exception {
         System.out.println("HELLO WORLD!");
+        NationTurn turn = NationTurn.create(pdfA);
 //        System.out.println("Callback (JSONP)" + callback + " of Game #" + game + " for turn #" + turn+ " for nation #" + nation);
-        return  "jsonp(\"" + NationTurn.create(pdfA) + "\");";
+        return  "jsonp(" + new CharacterSection(turn).call() + ");";
     }
 
     public TurnReader() {
@@ -58,6 +59,7 @@ public class TurnReader extends API {
             for (PDPage pdPage : pdPages) {
                 new Page(new File(outputFile + inputFile.substring(inputFile.lastIndexOf("\\") + 1, inputFile.lastIndexOf(".pdf")) + "-" + ++page + ".png"), pdPage, page, inputFile).run();
             }
+            pdf.close();
         }
         return "{'pdf':'" + inputFile + "', 'img':'" + outputFile + "', 'pages':" + pdPages.size() + "}";
     }
