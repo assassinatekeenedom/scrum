@@ -2,30 +2,144 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title> Stu Nicholls | CSSplay | Cross Browser Multi Page Photograph Gallery</title>
-        <meta name="Author" content="Stu Nicholls" />
-
+        <title> mepbm</title>
+        <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['annotationchart']}]}"></script>
         <script type="text/javascript">
-            var require = function (src) {
-                var s = document.createElement('script');
-                s.type = 'text/javascript';
-                s.src = src;
-                s.async = true;
-                document.head.appendChild(s);
-                document.head.removeChild(s);
-                s = null, delete s;
-                console.log("Loading script at: ", src);
-            };
-            jsonp = function (event) {
-                console.table(event);
-            }
-            //require("http://localhost:13370/test.js");
-            require("http://localhost:13370/game143/Turn00/g143n05t000.js");
-            require("http://localhost:13370/game143/Turn00/g143n04t000.js");
+                    var require = function (src) {
+                    var s = document.createElement('script');
+                            s.type = 'text/javascript';
+                            s.src = src;
+                            s.async = true;
+                            document.head.appendChild(s);
+                            document.head.removeChild(s);
+                            s = null, delete s;
+                            console.log("Loading script at: ", src);
+                    };
+                    jsonp = function (event) {
+                    jsonp.history.unshift(event);
+                            console.table(jsonp.history[0]);
+                            if (jsonp.history.length > 13){
+                    complete();
+                    }
+                    }
+            jsonp.history = [];
+                    var n7 = function(){
+                    require("http://localhost:13370/game143/Turn00/g143n07t000.js");
+                            require("http://localhost:13370/game143/Turn01/g143n07t001.js");
+                            require("http://localhost:13370/game143/Turn02/g143n07t002.js");
+                            require("http://localhost:13370/game143/Turn03/g143n07t003.js");
+                            require("http://localhost:13370/game143/Turn04/g143n07t004.js");
+                            require("http://localhost:13370/game143/Turn05/g143n07t005.js");
+                            require("http://localhost:13370/game143/Turn06/g143n07t006.js");
+                            require("http://localhost:13370/game143/Turn07/g143n07t007.js");
+                            require("http://localhost:13370/game143/Turn08/g143n07t008.js");
+                            require("http://localhost:13370/game143/Turn09/g143n07t009.js");
+                            require("http://localhost:13370/game143/Turn10/g143n07t010.js");
+                            require("http://localhost:13370/game143/Turn11/g143n07t011.js");
+                            require("http://localhost:13370/game143/Turn12/g143n07t012.js");
+                            require("http://localhost:13370/game143/Turn13/g143n07t013.js");
+                            require("http://localhost:13370/game143/Turn14/g143n07t014.js");
+                    }
+            var n3 = function(){
             require("http://localhost:13370/game143/Turn00/g143n03t000.js");
-            require("http://localhost:13370/game141/turn06/g141n21t006.js");
+                    require("http://localhost:13370/game143/Turn01/g143n03t001.js");
+                    require("http://localhost:13370/game143/Turn02/g143n03t002.js");
+                    require("http://localhost:13370/game143/Turn03/g143n03t003.js");
+                    require("http://localhost:13370/game143/Turn04/g143n03t004.js");
+                    require("http://localhost:13370/game143/Turn05/g143n03t005.js");
+                    require("http://localhost:13370/game143/Turn06/g143n03t006.js");
+                    require("http://localhost:13370/game143/Turn07/g143n03t007.js");
+                    require("http://localhost:13370/game143/Turn08/g143n03t008.js");
+                    require("http://localhost:13370/game143/Turn09/g143n03t009.js");
+                    require("http://localhost:13370/game143/Turn10/g143n03t010.js");
+                    require("http://localhost:13370/game143/Turn11/g143n03t011.js");
+                    require("http://localhost:13370/game143/Turn12/g143n03t012.js");
+                    require("http://localhost:13370/game143/Turn13/g143n03t013.js");
+            }
+            var n4 = function(){
+            require("http://localhost:13370/game143/Turn00/g143n04t000.js");
+                    require("http://localhost:13370/game143/Turn01/g143n04t001.js");
+                    require("http://localhost:13370/game143/Turn02/g143n04t002.js");
+                    require("http://localhost:13370/game143/Turn03/g143n04t003.js");
+                    require("http://localhost:13370/game143/Turn04/g143n04t004.js");
+                    require("http://localhost:13370/game143/Turn05/g143n04t005.js");
+                    require("http://localhost:13370/game143/Turn06/g143n04t006.js");
+                    require("http://localhost:13370/game143/Turn07/g143n04t007.js");
+                    require("http://localhost:13370/game143/Turn08/g143n04t008.js");
+                    require("http://localhost:13370/game143/Turn09/g143n04t009.js");
+                    require("http://localhost:13370/game143/Turn10/g143n04t010.js");
+                    require("http://localhost:13370/game143/Turn11/g143n04t011.js");
+                    require("http://localhost:13370/game143/Turn12/g143n04t012.js");
+                    require("http://localhost:13370/game143/Turn13/g143n04t013.js");
+            }
+            var n9 = function(){
+            require("http://localhost:13370/game143/Turn00/g143n09t000.js");
+                    require("http://localhost:13370/game143/Turn01/g143n09t001.js");
+                    require("http://localhost:13370/game143/Turn02/g143n09t002.js");
+                    require("http://localhost:13370/game143/Turn03/g143n09t003.js");
+                    require("http://localhost:13370/game143/Turn04/g143n09t004.js");
+                    require("http://localhost:13370/game143/Turn05/g143n09t005.js");
+                    require("http://localhost:13370/game143/Turn06/g143n09t006.js");
+                    require("http://localhost:13370/game143/Turn07/g143n09t007.js");
+                    require("http://localhost:13370/game143/Turn08/g143n09t008.js");
+                    require("http://localhost:13370/game143/Turn09/g143n09t009.js");
+                    require("http://localhost:13370/game143/Turn10/g143n09t010.js");
+                    require("http://localhost:13370/game143/Turn11/g143n09t011.js");
+                    require("http://localhost:13370/game143/Turn12/g143n09t012.js");
+                    require("http://localhost:13370/game143/Turn13/g143n09t013.js");
+            }
+//                n7();
+//                n3();
+                n4();
+//            n9();
+                    var complete = function(){
 
+                    google.load('visualization', '1', {'packages': ['annotationchart']});
+                            google.setOnLoadCallback(drawChart);
+                            function drawChart() {
+
+                            var data = new google.visualization.DataTable();
+                                    data.addColumn('date', 'Date');
+                                    data.addColumn('number', 'Mage');
+                                    data.addColumn('string', 'Mage title');
+                                    data.addColumn('string', 'Mage text');
+                                    data.addColumn('number', 'Agent');
+                                    data.addColumn('string', 'Agent title');
+                                    data.addColumn('string', 'Agent text');
+                                    data.addColumn('number', 'Command');
+                                    data.addColumn('string', 'Command title');
+                                    data.addColumn('string', 'Command text');
+                                    data.addColumn('number', 'Emissary');
+                                    data.addColumn('string', 'Emissary title');
+                                    data.addColumn('string', 'Emissary text');
+                                    var wall = [].concat(jsonp.history)
+                                    while (wall.length){
+                            var current = wall.shift();
+                                    var dwall = [].concat(current);
+                                    var cskill = 0, eskill = 0, askill = 0, mskill = 0;
+                                    while (dwall.length){
+                            toon = dwall.shift();
+                                    cskill += toon.command;
+                                    askill += toon.agent;
+                                    eskill += toon.emissary;
+                                    mskill += toon.mage;
+                            }
+                            data.addRows([
+                                    [new Date(2314, 2, wall.length + 1), mskill, undefined, undefined, askill, undefined, undefined, cskill, undefined, undefined, eskill, undefined, undefined],
+                            ]);
+                            }
+                            var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
+                                    var options = {
+                                    displayAnnotations: true
+                                    };
+                                    chart.draw(data, options);
+                            }
+                    }
         </script>
+
     </head>
-    <body></body>
+
+    <body>
+        <div id='chart_div' style='width: 900px; height: 500px;'></div>
+    </body>
 </html>
