@@ -46,6 +46,18 @@ public class TurnReader extends API {
                 agent = agent.replaceAll("Agent", "");
                 emissary = emissary.replaceAll("Emissary", "");
                 mage = mage.replaceAll("Mage", "");
+                if(com.indexOf("(")>0){
+                    com = com.substring(com.indexOf("(")+1, com.indexOf(")"));
+                }
+                if(agent.indexOf("(")>0){
+                    agent = agent.substring(agent.indexOf("(")+1, agent.indexOf(")"));
+                }
+                if(emissary.indexOf("(")>0){
+                    emissary = emissary.substring(emissary.indexOf("(")+1, emissary.indexOf(")"));
+                }
+                if(mage.indexOf("(")>0){
+                    mage = mage.substring(mage.indexOf("(")+1, mage.indexOf(")"));
+                }
                 toons.add(new Character(name, Integer.parseInt(com.trim()), Integer.parseInt(agent.trim()), Integer.parseInt(emissary.trim()), Integer.parseInt(mage.trim())));
             }
         }
