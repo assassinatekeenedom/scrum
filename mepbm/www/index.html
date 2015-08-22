@@ -88,13 +88,14 @@
                                     var cskill = 0, eskill = 0, askill = 0, mskill = 0;
                                     while (dwall.length){
                             toon = dwall.shift();
+                            console.debug(toon);
                                     cskill += toon.command;
                                     askill += toon.agent;
                                     eskill += toon.emissary;
                                     mskill += toon.mage;
                             }
                             data.addRows([
-                                    [new Date(2314, 2, wall.length + 1), mskill, 'Skill Order', '...details...', askill, 'Skill Order', '...details...', cskill, 'Skill Order', '...details...', eskill, 'Skill Order', '...details...'],
+                                    [new Date(2314, 2, wall.length + 1), mskill, toon.name, '...details...', askill, toon.name, '...details...', cskill, toon.name, '...details...', eskill, toon.name, '...details...'],
                             ]);
                             }
                             var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
