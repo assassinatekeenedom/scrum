@@ -25,6 +25,15 @@ public class Character {
         this.mage = mage;
     }
 
+    public Character(String name, int command, int agent, int emissary, int mage, String message) {
+        this.name = name;
+        this.command = command;
+        this.agent = agent;
+        this.emissary = emissary;
+        this.mage = mage;
+        this.message = message;
+    }
+
     public String getDate() {
         return date;
     }

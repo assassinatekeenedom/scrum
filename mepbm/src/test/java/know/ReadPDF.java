@@ -8,8 +8,8 @@ import org.testng.annotations.Test;
 public class ReadPDF {
 
     private static final String DESTINATION = "C:\\selenium\\mepbm\\www\\";
-    private static final String pdfA = "C:\\selenium\\game\\game143\\Turn00\\g143n04t000.pdf";
-//    private static final String pdfA = "C:\\selenium\\game\\game143\\Turn00\\g143n05t000.pdf";
+    private static final String pdfA = "C:\\selenium\\game\\game143\\Turn01\\g143n04t001.pdf";
+//    private static final String pdfA = "C:\\selenium\\game\\game143\\Turn00\\g143n05t004.pdf";
 
     public ReadPDF() {
     }
