@@ -1,4 +1,4 @@
-package know;
+package know.pdf;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +10,9 @@ public class Character {
     private int agent;
     private int emissary;
     private int mage;
+    private String date;
+    private String message;
+    
 
     public Character() {
     }
@@ -20,6 +23,22 @@ public class Character {
         this.agent = agent;
         this.emissary = emissary;
         this.mage = mage;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getName() {

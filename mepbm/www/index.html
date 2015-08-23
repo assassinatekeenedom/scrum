@@ -82,6 +82,7 @@
                                     data.addColumn('string', 'Emissary title');
                                     data.addColumn('string', 'Emissary text');
                                     var wall = [].concat(jsonp.history)
+                                    var rows = [];
                                     while (wall.length){
                             var current = wall.shift();
                                     var dwall = [].concat(current);
@@ -94,10 +95,10 @@
                                     eskill += toon.emissary;
                                     mskill += toon.mage;
                             }
-                            data.addRows([
-                                    [new Date(2314, 2, wall.length + 1), mskill, "Skill", 'mage', askill, "Skill", 'agent', cskill, "Skill", 'command', eskill, "Skill", 'emissary'],
-                            ]);
+                            rows.push([new Date(2314, 2, wall.length + 1), mskill, "Skill", 'mage', askill, "Skill", 'agent', cskill, "Skill", 'command', eskill, "Skill", 'emissary']);
+                            
                             }
+                            data.addRows(rows);
                             var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
                                     var options = {
                                     displayAnnotations: true

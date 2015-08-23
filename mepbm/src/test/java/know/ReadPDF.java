@@ -1,6 +1,8 @@
 package know;
 
+import know.pdf.Character;
 import java.util.List;
+import know.pdf.Turn;
 import org.testng.annotations.Test;
 
 public class ReadPDF {
@@ -14,7 +16,7 @@ public class ReadPDF {
 
     @Test
     public void testNationTurn() throws Exception {
-        List<Character> toons = TurnReader.toons(TurnReader.read(pdfA));
+        List<Character> toons = Turn.toons(TurnReader.read(pdfA));
         System.out.println(toons);
     }
 }
