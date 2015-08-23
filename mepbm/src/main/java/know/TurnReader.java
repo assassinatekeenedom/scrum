@@ -17,8 +17,6 @@ import org.apache.pdfbox.util.PDFTextStripper;
 @Path("")
 public class TurnReader extends API {
 
-    private static final String pdfA = "C:\\selenium\\game\\game143\\Turn00\\g143n05t000.pdf";
-
     public static String read(String path) {
         try {
             PDDocument xpdf = PDDocument.loadNonSeq(new File(path), null);
