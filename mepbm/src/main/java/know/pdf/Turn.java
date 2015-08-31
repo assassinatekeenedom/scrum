@@ -1,9 +1,25 @@
 package know.pdf;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.util.PDFTextStripper;
 
 public class Turn {
+
+    public static String read(String path) {
+        try {
+            PDDocument xpdf = PDDocument.loadNonSeq(new File(path), null);
+            PDFTextStripper extract = new PDFTextStripper();
+            extract.setStartPage(0);
+            extract.setEndPage(xpdf.getNumberOfPages());
+            return extract.getText(xpdf);
+        } catch (IOException ex) {
+        }
+        return "Failed to read PDF at path: " + path;
+    }
 
     public static List<Character> toons(String pdf) throws Exception {
         String ending = pdf.substring(pdf.indexOf("ORDERS GIVEN"), pdf.length());

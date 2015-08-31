@@ -12,33 +12,18 @@ import javax.ws.rs.core.MediaType;
 import know.pdf.Turn;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.util.PDFTextStripper;
 
 @Path("")
 public class TurnReader extends API {
-
-    public static String read(String path) {
-        try {
-            PDDocument xpdf = PDDocument.loadNonSeq(new File(path), null);
-            PDFTextStripper extract = new PDFTextStripper();
-            extract.setStartPage(0);
-            extract.setEndPage(xpdf.getNumberOfPages());
-            return extract.getText(xpdf);
-        } catch (IOException ex) {
-        }
-        return "Failed to read PDF at path: " + path;
-    }
-
-    
 
     @Override
     public void run() {
         setProcess(getClass().getCanonicalName());
         setOrigin("http://localhost/");
         setPort(13370);
-        System.out.println("-----");
+        System.out.println("-- initializing RESTful endpoint --");
         super.run();
-        System.out.println("-----");
+        System.out.println("-- RESTful endpoint started --");
     }
 
     @GET
@@ -48,7 +33,7 @@ public class TurnReader extends API {
         String path = "C:\\mepbm\\games\\fourthage\\" + game + "\\" + turn + "\\" + file + ".pdf";
         System.out.println("HELLO WORLD ... path ...! " + path);
 //        System.out.println("Callback (JSONP)" + callback + " of Game #" + game + " for turn #" + turn+ " for nation #" + nation);
-        return "jsonp(" + Turn.toons(TurnReader.read(path)) + ");";
+        return "jsonp(" + Turn.toons(Turn.read(path)) + ");";
     }
 
     public TurnReader() {

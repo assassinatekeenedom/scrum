@@ -16,7 +16,7 @@ public class ReadPDF {
 
     @Test
     public void testNationTurn() throws Exception {
-        List<Character> toons = Turn.toons(TurnReader.read(pdfA));
+        List<Character> toons = Turn.toons(Turn.read(pdfA));
         System.out.println(toons);
     }
 }
